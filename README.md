@@ -198,7 +198,7 @@ src/main/java/com/payguard
 ## Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/payguard.git
+git clone https://github.com/Adamsonoladipupo/pay_guard
 ```
 
 ---
