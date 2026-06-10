@@ -62,7 +62,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="End3kU55QTJX92bPjWSG" name="class diagram">
-    <mxGraphModel dx="929" dy="545" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1626" dy="953" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -78,17 +78,17 @@
         <mxCell id="wY2A6c8ZNtAwZWG3tiPu-4" value="." style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="wY2A6c8ZNtAwZWG3tiPu-1">
           <mxGeometry y="158" width="160" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="wY2A6c8ZNtAwZWG3tiPu-9" value="FlaggedTransaction" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="600" y="490" width="160" height="134" as="geometry" />
+        <mxCell id="wY2A6c8ZNtAwZWG3tiPu-9" value="FraudAlertRepository" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="490" width="160" height="114" as="geometry" />
         </mxCell>
-        <mxCell id="wY2A6c8ZNtAwZWG3tiPu-10" value="- id: UUID&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;- transactionID: UUID&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;- reason: String&lt;/span&gt;&lt;/div&gt;&lt;div&gt;- flaggedAt: localDateTime&amp;nbsp;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="wY2A6c8ZNtAwZWG3tiPu-9">
-          <mxGeometry y="26" width="160" height="74" as="geometry" />
+        <mxCell id="wY2A6c8ZNtAwZWG3tiPu-10" value="+ save()&lt;div&gt;+ finadAll()&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="wY2A6c8ZNtAwZWG3tiPu-9">
+          <mxGeometry y="26" width="160" height="54" as="geometry" />
         </mxCell>
         <mxCell id="wY2A6c8ZNtAwZWG3tiPu-11" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="wY2A6c8ZNtAwZWG3tiPu-9">
-          <mxGeometry y="100" width="160" height="8" as="geometry" />
+          <mxGeometry y="80" width="160" height="8" as="geometry" />
         </mxCell>
         <mxCell id="wY2A6c8ZNtAwZWG3tiPu-12" value="." style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="wY2A6c8ZNtAwZWG3tiPu-9">
-          <mxGeometry y="108" width="160" height="26" as="geometry" />
+          <mxGeometry y="88" width="160" height="26" as="geometry" />
         </mxCell>
         <mxCell id="wY2A6c8ZNtAwZWG3tiPu-13" value="User" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1030" y="490" width="160" height="144" as="geometry" />
@@ -129,7 +129,7 @@
         <mxCell id="wY2A6c8ZNtAwZWG3tiPu-25" value="FraudAlert" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1060" y="710" width="160" height="124" as="geometry" />
         </mxCell>
-        <mxCell id="wY2A6c8ZNtAwZWG3tiPu-26" value="- limitPerMinute: int = 5&lt;div&gt;-&amp;nbsp;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="wY2A6c8ZNtAwZWG3tiPu-25">
+        <mxCell id="wY2A6c8ZNtAwZWG3tiPu-26" value="- id: UUID&lt;div&gt;- transactionId: UUID&lt;/div&gt;&lt;div&gt;- reason: String&lt;/div&gt;&lt;div&gt;- createdAt: localDateTine&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="wY2A6c8ZNtAwZWG3tiPu-25">
           <mxGeometry y="26" width="160" height="64" as="geometry" />
         </mxCell>
         <mxCell id="wY2A6c8ZNtAwZWG3tiPu-27" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="wY2A6c8ZNtAwZWG3tiPu-25">
