@@ -1,5 +1,10 @@
 package com.pay_guard.pay_guard_bkd.data.models;
 
-public class BaseEntity {
-    
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+public abstract class BaseEntity {
+    private UUID Id;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 }
