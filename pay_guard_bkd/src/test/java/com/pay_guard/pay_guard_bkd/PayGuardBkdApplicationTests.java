@@ -1,4 +1,4 @@
-package com.admson.pay_guard_bkd;
+package com.pay_guard.pay_guard_bkd;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
