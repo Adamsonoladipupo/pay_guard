@@ -6,6 +6,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.OneToMany;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Merchant extends BaseEntity {
 
