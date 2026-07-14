@@ -15,4 +15,6 @@ public class FlaggedTransaction extends BaseEntity{
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "transaction_id", nullable = false, unique = true)
     private Transaction transaction;
+
+    
 }
