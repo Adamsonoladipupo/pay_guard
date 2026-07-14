@@ -5,6 +5,8 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.OneToMany;
 
+import java.util.ArrayList;
+
 public class Merchant extends BaseEntity {
 
     @Column(nullable = false, unique = true, length = 50)
