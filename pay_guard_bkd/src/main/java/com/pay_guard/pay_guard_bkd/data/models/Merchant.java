@@ -13,10 +13,10 @@ public class Merchant extends BaseEntity {
     @Column(nullable = false, length = 100)
     private String merchantCategory;
 
-    Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private MerchantStatus status = MerchantStatus.ACTIVE;
 
-    
+    @OneToMany(mappedBy = "merchant")
     private List<Transaction> transactions = new ArrayList<>();
 }
