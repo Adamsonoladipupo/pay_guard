@@ -3,6 +3,7 @@ package com.pay_guard.pay_guard_bkd.data.models;
 import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.OneToMany;
 
 public class Merchant extends BaseEntity {
 
