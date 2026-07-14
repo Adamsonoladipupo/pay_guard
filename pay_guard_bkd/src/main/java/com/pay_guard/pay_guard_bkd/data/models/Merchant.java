@@ -16,7 +16,7 @@ public class Merchant extends BaseEntity {
     @Column(nullable = false, length = 150)
     private String merchantName;
 
-    @@Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private String merchantCategory;
 
