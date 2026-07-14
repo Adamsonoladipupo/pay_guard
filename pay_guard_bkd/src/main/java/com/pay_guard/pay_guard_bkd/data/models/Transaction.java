@@ -5,8 +5,12 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 
 public class Transaction extends BaseEntity{
+
     @Column(nullable = false, length = 20)
-    private String cardNumber;
+    private String maskedCardNumber;
+
+    @Column(nullable = false, length = 20)
+    private String cardHash;
 
     @Column(nullable = false, precision = 19, scale = 2)
     private BigDecimal amount;
