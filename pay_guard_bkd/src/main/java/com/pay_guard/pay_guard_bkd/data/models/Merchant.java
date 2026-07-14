@@ -1,6 +1,8 @@
 package com.pay_guard.pay_guard_bkd.data.models;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 
 public class Merchant extends BaseEntity {
 
@@ -10,7 +12,8 @@ public class Merchant extends BaseEntity {
     @Column(nullable = false, length = 150)
     private String merchantName;
 
-    @Column(nullable = false, length = 100)
+    @@Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private String merchantCategory;
 
     @Enumerated(EnumType.STRING)
