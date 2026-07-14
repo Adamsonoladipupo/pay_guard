@@ -1,13 +1,18 @@
 package com.pay_guard.pay_guard_bkd.data.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "merchants")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Merchant extends BaseEntity {
 
     @Column(nullable = false, unique = true, length = 50)

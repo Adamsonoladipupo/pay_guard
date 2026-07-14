@@ -1,9 +1,18 @@
 package com.pay_guard.pay_guard_bkd.data.models;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 
+
+@Entity
+@Table(name = "transactions")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Transaction extends BaseEntity{
 
     @Column(nullable = false, length = 20)
