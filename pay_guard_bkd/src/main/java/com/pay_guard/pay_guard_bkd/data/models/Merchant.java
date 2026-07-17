@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.persister.entity.mutation.MergeCoordinatorHistory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,7 @@ public class Merchant extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String merchantCategory;
+    private MerchantCategory merchantCategory;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

@@ -26,8 +26,8 @@ public class FlaggedTransaction extends BaseEntity {
     private String reason;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 100)
-    private String fraudRule;
+    @Column(nullable = false)
+    private FraudRule fraudRule;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
