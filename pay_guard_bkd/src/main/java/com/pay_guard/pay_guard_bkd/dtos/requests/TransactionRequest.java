@@ -25,5 +25,4 @@ public record TransactionRequest(
         TransactionType transactionType,
 
         String deviceId
-) {
-}
+) {}
