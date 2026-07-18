@@ -1,7 +1,6 @@
 package com.pay_guard.pay_guard_bkd.dtos.requests;
 
 import com.pay_guard.pay_guard_bkd.data.models.TransactionType;
-import org.antlr.v4.runtime.misc.NotNull;
 
 import java.math.BigDecimal;
 
