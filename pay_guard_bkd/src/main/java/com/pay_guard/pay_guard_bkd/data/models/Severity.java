@@ -6,5 +6,11 @@ public enum Severity {
     HIGH(60),
     CRITICAL(100);
 
-    
+    private final int riskScore;
+    Severity(int riskScore) {
+        this.riskScore = riskScore;
+    }
+    public int getRiskScore() {
+        return riskScore;
+    }
 }
