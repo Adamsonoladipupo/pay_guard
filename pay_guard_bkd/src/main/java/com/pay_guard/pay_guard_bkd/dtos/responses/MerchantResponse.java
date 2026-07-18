@@ -1,7 +1,7 @@
 package com.pay_guard.pay_guard_bkd.dtos.responses;
 
-import com.pay_guard.pay_guard_bkd.data.models.MerchantCategory;
-import com.pay_guard.pay_guard_bkd.data.models.MerchantStatus;
+import com.pay_guard.pay_guard_bkd.data.models.emuns.MerchantCategory;
+import com.pay_guard.pay_guard_bkd.data.models.emuns.MerchantStatus;
 
 import java.util.UUID;
 

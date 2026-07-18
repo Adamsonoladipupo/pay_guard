@@ -1,10 +1,11 @@
 package com.pay_guard.pay_guard_bkd.data.models;
 
+import com.pay_guard.pay_guard_bkd.data.models.emuns.MerchantCategory;
+import com.pay_guard.pay_guard_bkd.data.models.emuns.MerchantStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.persister.entity.mutation.MergeCoordinatorHistory;
 
 import java.util.ArrayList;
 import java.util.List;

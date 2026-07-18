@@ -1,7 +1,7 @@
 package com.pay_guard.pay_guard_bkd.data.repositories;
 
 import com.pay_guard.pay_guard_bkd.data.models.Merchant;
-import com.pay_guard.pay_guard_bkd.data.models.MerchantStatus;
+import com.pay_guard.pay_guard_bkd.data.models.emuns.MerchantStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

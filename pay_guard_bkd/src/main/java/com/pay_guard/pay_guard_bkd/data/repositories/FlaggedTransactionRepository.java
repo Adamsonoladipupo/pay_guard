@@ -1,8 +1,8 @@
 package com.pay_guard.pay_guard_bkd.data.repositories;
 
 import com.pay_guard.pay_guard_bkd.data.models.FlaggedTransaction;
-import com.pay_guard.pay_guard_bkd.data.models.InvestigationStatus;
-import com.pay_guard.pay_guard_bkd.data.models.Severity;
+import com.pay_guard.pay_guard_bkd.data.models.emuns.InvestigationStatus;
+import com.pay_guard.pay_guard_bkd.data.models.emuns.Severity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
