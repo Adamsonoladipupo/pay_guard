@@ -17,26 +17,13 @@ public interface TransactionRepository extends JpaRepository <Transaction, UUID>
 
     List<Transaction> findByMerchantMerchantId(String merchantId);
 
-    List<Transaction> findByCreatedAtBetween(
-            LocalDateTime start,
-            LocalDateTime end
-    );
+    List<Transaction> findByCreatedAtBetween(LocalDateTime start, LocalDateTime end);
 
-    long countByIpAddressAndCreatedAtAfter(
-            String ipAddress,
-            LocalDateTime timestamp
-    );
+    long countByIpAddressAndCreatedAtAfter(String ipAddress, LocalDateTime timestamp);
 
-    long countByMerchantMerchantIdAndCreatedAtAfter(
-            String merchantId,
-            LocalDateTime timestamp
-    );
+    long countByMerchantMerchantIdAndCreatedAtAfter(String merchantId, LocalDateTime timestamp);
 
-    List<Transaction> findTop10ByCardHashOrderByCreatedAtDesc(
-            String cardHash
-    );
+    List<Transaction> findTop10ByCardHashOrderByCreatedAtDesc(String cardHash);
 
-    List<Transaction> findByRiskScoreGreaterThanEqual(
-            Integer riskScore
-    );
+    List<Transaction> findByRiskScoreGreaterThanEqual(Integer riskScore);
 }
