@@ -12,4 +12,25 @@ public record FraudCheckResult (
     public int riskScore() {
         return severity == null ? 0 : severity.getRiskScore();
     }
+    public static FraudCheckResult noFraud() {
+        return new FraudCheckResult(
+                false,
+                null,
+                null,
+                null
+        );
+    }
+    public static FraudCheckResult fraud(
+            FraudRule fraudRule,
+            Severity severity,
+            String reason
+    ) {
+
+        return new FraudCheckResult(
+                true,
+                fraudRule,
+                severity,
+                reason
+        );
+    }
 }
