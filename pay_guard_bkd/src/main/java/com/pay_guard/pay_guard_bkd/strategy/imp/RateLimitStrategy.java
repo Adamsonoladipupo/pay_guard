@@ -34,7 +34,12 @@ public class RateLimitStrategy implements FraudDetectionStrategy {
                     "More than five requests detected from the same IP."
             );
         }
-        
-        return null;
+
+        return new FraudCheckResult(
+                false,
+                null,
+                null,
+                null
+        );
     }
 }
