@@ -1,9 +1,16 @@
 package com.pay_guard.pay_guard_bkd.strategy.imp;
 
+import com.pay_guard.pay_guard_bkd.data.models.Merchant;
+import com.pay_guard.pay_guard_bkd.data.models.emuns.FraudRule;
+import com.pay_guard.pay_guard_bkd.data.models.emuns.MerchantStatus;
+import com.pay_guard.pay_guard_bkd.data.models.emuns.Severity;
+import com.pay_guard.pay_guard_bkd.data.repository.MerchantRepository;
 import com.pay_guard.pay_guard_bkd.dtos.requests.TransactionRequest;
 import com.pay_guard.pay_guard_bkd.strategy.FraudCheckResult;
 import com.pay_guard.pay_guard_bkd.strategy.FraudDetectionStrategy;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MerchantStrategy implements FraudDetectionStrategy {
 
     private final MerchantRepository merchantRepository;
@@ -14,7 +21,6 @@ public class MerchantStrategy implements FraudDetectionStrategy {
 
     @Override
     public FraudCheckResult check(TransactionRequest request) {
-
         Merchant merchant = merchantRepository
                 .findByMerchantId(request.merchantId())
                 .orElse(null);
@@ -23,7 +29,7 @@ public class MerchantStrategy implements FraudDetectionStrategy {
 
             return new FraudCheckResult(
                     true,
-                    FraudRule.UNKNOWN_MERCHANT,
+                    FraudRule.BLACKLISTED_MERCHANT,
                     Severity.CRITICAL,
                     "Merchant does not exist."
             );
@@ -38,9 +44,12 @@ public class MerchantStrategy implements FraudDetectionStrategy {
                     "Merchant is not active."
             );
         }
-    @Override
-    public FraudCheckResult check(TransactionRequest request) {
 
-        return null;
+        return new FraudCheckResult(
+                false,
+                null,
+                null,
+                null
+        );
     }
 }
