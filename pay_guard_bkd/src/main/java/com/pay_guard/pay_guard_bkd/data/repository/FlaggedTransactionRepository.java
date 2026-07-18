@@ -1,4 +1,4 @@
-package com.pay_guard.pay_guard_bkd.data.repositories;
+package com.pay_guard.pay_guard_bkd.data.repository;
 
 import com.pay_guard.pay_guard_bkd.data.models.FlaggedTransaction;
 import com.pay_guard.pay_guard_bkd.data.models.emuns.InvestigationStatus;
