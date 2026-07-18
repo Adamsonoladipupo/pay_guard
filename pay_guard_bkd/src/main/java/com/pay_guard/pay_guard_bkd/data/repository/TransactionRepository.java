@@ -26,4 +26,5 @@ public interface TransactionRepository extends JpaRepository <Transaction, UUID>
     List<Transaction> findTop10ByCardHashOrderByCreatedAtDesc(String cardHash);
 
     List<Transaction> findByRiskScoreGreaterThanEqual(Integer riskScore);
+    long countByCardHashAndCreatedAtAfter(String cardHash, LocalDateTime timestamp);
 }
