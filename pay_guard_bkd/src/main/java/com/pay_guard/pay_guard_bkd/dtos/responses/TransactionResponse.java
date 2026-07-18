@@ -4,9 +4,10 @@ import com.pay_guard.pay_guard_bkd.data.models.TransactionStatus;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public record TransactionResponse(
-        Long id,
+        UUID id,
         String maskedCardNumber,
         BigDecimal amount,
         String currency,
