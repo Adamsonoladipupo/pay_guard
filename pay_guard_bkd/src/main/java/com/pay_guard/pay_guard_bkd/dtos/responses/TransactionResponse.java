@@ -1,6 +1,6 @@
 package com.pay_guard.pay_guard_bkd.dtos.responses;
 
-import com.pay_guard.pay_guard_bkd.data.models.TransactionStatus;
+import com.pay_guard.pay_guard_bkd.data.models.emuns.TransactionStatus;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

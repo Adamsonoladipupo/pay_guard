@@ -1,7 +1,7 @@
 package com.pay_guard.pay_guard_bkd.data.repositories;
 
 import com.pay_guard.pay_guard_bkd.data.models.Transaction;
-import com.pay_guard.pay_guard_bkd.data.models.TransactionStatus;
+import com.pay_guard.pay_guard_bkd.data.models.emuns.TransactionStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDateTime;

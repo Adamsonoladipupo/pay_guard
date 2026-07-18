@@ -7,7 +7,9 @@ public record FraudCheckResult (
         boolean fraudDetected,
         FraudRule fraudRule,
         Severity severity,
-        Integer riskScore,
         String reason
 ){
+    public int riskScore() {
+        return severity == null ? 0 : severity.getRiskScore();
+    }
 }

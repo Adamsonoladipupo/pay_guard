@@ -1,6 +1,6 @@
 package com.pay_guard.pay_guard_bkd.dtos.responses;
 
-import com.pay_guard.pay_guard_bkd.data.models.UserRole;
+import com.pay_guard.pay_guard_bkd.data.models.emuns.UserRole;
 
 import java.util.UUID;
 

@@ -1,5 +1,7 @@
 package com.pay_guard.pay_guard_bkd.data.models;
 
+import com.pay_guard.pay_guard_bkd.data.models.emuns.TransactionStatus;
+import com.pay_guard.pay_guard_bkd.data.models.emuns.TransactionType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
