@@ -2,21 +2,13 @@ package com.pay_guard.pay_guard_bkd.services;
 
 import com.pay_guard.pay_guard_bkd.data.models.Admin;
 import com.pay_guard.pay_guard_bkd.data.repository.AdminRepository;
-import com.pay_guard.pay_guard_bkd.dtos.requests.LoginRequest;
 import com.pay_guard.pay_guard_bkd.dtos.requests.RegisterAdminRequest;
-import com.pay_guard.pay_guard_bkd.dtos.responses.AdminResponse;
 import com.pay_guard.pay_guard_bkd.dtos.responses.LoginResponse;
-import com.pay_guard.pay_guard_bkd.dtos.responses.RegisterAdminResponse;
-import com.pay_guard.pay_guard_bkd.exception.AdminNotFoundException;
-import com.pay_guard.pay_guard_bkd.exception.EmailAlreadyExistsException;
-import com.pay_guard.pay_guard_bkd.exception.InvalidCredentialsException;
 import com.pay_guard.pay_guard_bkd.mappers.AdminMapper;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -27,7 +19,7 @@ public class AuthenticationServiceImpl implements AuthenticationService{
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public AdminResponse registerAdmin(RegisterAdminRequest request) {
+    public RegisterResponse registerAdmin(RegisterAdminRequest request) {
 
         validateEmail(request.email());
 
@@ -35,7 +27,7 @@ public class AuthenticationServiceImpl implements AuthenticationService{
 
         Admin savedAdmin = adminRepository.save(admin);
 
-        return adminMapper.toResponse(savedAdmin);
+        return adminMapper.toRegisterResponse(savedAdmin);
     }
 
     @Override
@@ -78,7 +70,11 @@ public class AuthenticationServiceImpl implements AuthenticationService{
         return adminRepository.existsByEmail(email);
     }
 
-
+    /*
+     * ============================================
+     * Private Helper Methods
+     * ============================================
+     */
 
     private void validateEmail(String email) {
 
@@ -127,4 +123,5 @@ public class AuthenticationServiceImpl implements AuthenticationService{
             );
         }
     }
+
 }
