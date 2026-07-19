@@ -14,7 +14,7 @@ public class MerchantService {
     public MerchantService(MerchantRepository repository) {
         this.repository = repository;
     }
-    public Merchant findActiveMerchant(String merchantId) {
+    public Merchant validateAndGetMerchant(String merchantId) {
 
         Merchant merchant = repository.findByMerchantId(merchantId)
                 .orElseThrow(() ->
