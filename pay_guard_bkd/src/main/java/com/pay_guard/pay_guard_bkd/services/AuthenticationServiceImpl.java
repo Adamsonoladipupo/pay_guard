@@ -27,13 +27,9 @@ public class AuthenticationServiceImpl implements AuthenticationService{
 
     @Override
     public RegisterResponse registerAdmin(RegisterAdminRequest request) {
-
         validateEmail(request.email());
-
         Admin admin = createAdmin(request);
-
         Admin savedAdmin = adminRepository.save(admin);
-
         return adminMapper.toRegisterResponse(savedAdmin);
     }
 

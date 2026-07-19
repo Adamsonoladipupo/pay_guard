@@ -15,5 +15,6 @@ public interface AdminMapper {
 //    RegisterResponse toRegisterResponse(Admin admin);
     @Mapping(target = "message", constant = "Admin registered successfully.")
     RegisterResponse toRegisterResponse(Admin admin);
+
     LoginResponse toLoginResponse(Admin admin);
 }
