@@ -2,8 +2,10 @@ package com.pay_guard.pay_guard_bkd.services;
 
 import com.pay_guard.pay_guard_bkd.data.models.Admin;
 import com.pay_guard.pay_guard_bkd.data.repository.AdminRepository;
+import com.pay_guard.pay_guard_bkd.dtos.requests.LoginRequest;
 import com.pay_guard.pay_guard_bkd.dtos.requests.RegisterAdminRequest;
 import com.pay_guard.pay_guard_bkd.dtos.responses.LoginResponse;
+import com.pay_guard.pay_guard_bkd.dtos.responses.RegisterResponse;
 import com.pay_guard.pay_guard_bkd.mappers.AdminMapper;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
