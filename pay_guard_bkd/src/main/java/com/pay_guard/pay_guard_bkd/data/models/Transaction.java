@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -52,6 +54,10 @@ public class Transaction extends BaseEntity{
 
     @Column(nullable = false)
     private Boolean flagged = false;
+
+    
+
+
 
     public void assignMerchant(Merchant merchant) {
         this.merchant = merchant;
