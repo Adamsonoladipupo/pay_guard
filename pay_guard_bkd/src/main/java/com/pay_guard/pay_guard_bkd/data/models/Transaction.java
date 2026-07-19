@@ -52,4 +52,57 @@ public class Transaction extends BaseEntity{
 
     @Column(nullable = false)
     private Boolean flagged = false;
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public static class Builder {
+
+        private final Transaction transaction;
+
+        public Builder() {
+            this.transaction = new Transaction();
+        }
+
+        public Builder merchant(Merchant merchant) {
+            transaction.setMerchant(merchant);
+            return this;
+        }
+
+        public Builder amount(BigDecimal amount) {
+            transaction.setAmount(amount);
+            return this;
+        }
+
+        public Builder cardHash(String cardHash) {
+            transaction.setCardHash(cardHash);
+            return this;
+        }
+
+        public Builder ipAddress(String ipAddress) {
+            transaction.setIpAddress(ipAddress);
+            return this;
+        }
+
+        public Builder status(TransactionStatus status) {
+            transaction.setStatus(status);
+            return this;
+        }
+
+        public Builder transactionType(TransactionType transactionType) {
+            transaction.setTransactionType(transactionType);
+            return this;
+        }
+
+        public Builder riskScore(Integer riskScore) {
+            transaction.setRiskScore(riskScore);
+            return this;
+        }
+
+        public Transaction build() {
+            return transaction;
+        }
+
+    }
 }
