@@ -6,6 +6,9 @@ import com.pay_guard.pay_guard_bkd.dtos.requests.LoginRequest;
 import com.pay_guard.pay_guard_bkd.dtos.requests.RegisterAdminRequest;
 import com.pay_guard.pay_guard_bkd.dtos.responses.LoginResponse;
 import com.pay_guard.pay_guard_bkd.dtos.responses.RegisterAdminResponse;
+import com.pay_guard.pay_guard_bkd.exception.AdminNotFoundException;
+import com.pay_guard.pay_guard_bkd.exception.EmailAlreadyExistsException;
+import com.pay_guard.pay_guard_bkd.exception.InvalidCredentialsException;
 import com.pay_guard.pay_guard_bkd.mappers.AdminMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -74,11 +77,7 @@ public class AuthenticationServiceImpl implements AuthenticationService{
         return adminRepository.existsByEmail(email);
     }
 
-    /*
-     * ============================================
-     * Private Helper Methods
-     * ============================================
-     */
+
 
     private void validateEmail(String email) {
 
