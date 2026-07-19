@@ -1,5 +1,6 @@
 package com.pay_guard.pay_guard_bkd.strategy.imp;
 
+import com.pay_guard.pay_guard_bkd.config.FraudProperties;
 import com.pay_guard.pay_guard_bkd.data.models.emuns.FraudRule;
 import com.pay_guard.pay_guard_bkd.data.models.emuns.Severity;
 import com.pay_guard.pay_guard_bkd.dtos.requests.TransactionRequest;
@@ -12,9 +13,12 @@ import java.time.LocalDateTime;
 
 @Component
 public class RateLimitStrategy implements FraudDetectionStrategy {
+
+    private final FraudProperties properties;
     private final TransactionRepository repository;
 
-    public RateLimitStrategy(TransactionRepository repository) {
+    public RateLimitStrategy(TransactionRepository repository, FraudProperties properties) {
+        this.properties = properties;
         this.repository = repository;
     }
 
@@ -22,10 +26,12 @@ public class RateLimitStrategy implements FraudDetectionStrategy {
     public FraudCheckResult check(TransactionRequest request) {
         long count = repository.countByIpAddressAndCreatedAtAfter(
                 request.ipAddress(),
-                LocalDateTime.now().minusMinutes(1)
+                LocalDateTime.now().minusMinutes(
+                        properties.getRateLimit().getWindowMinutes()
+                )
         );
 
-        if (count > 5) {
+        if (count > properties.getRateLimit().getMaxRequests()) {
 
             return new FraudCheckResult(
                     true,
