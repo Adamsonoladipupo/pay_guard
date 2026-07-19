@@ -1,5 +1,6 @@
 package com.pay_guard.pay_guard_bkd.services;
 
+import com.pay_guard.pay_guard_bkd.config.FraudProperties;
 import com.pay_guard.pay_guard_bkd.data.models.emuns.TransactionStatus;
 import com.pay_guard.pay_guard_bkd.dtos.requests.TransactionRequest;
 import com.pay_guard.pay_guard_bkd.factory.FraudStrategyFactory;
@@ -15,9 +16,11 @@ import java.util.List;
 public class FraudDetectionService {
 
     private final FraudStrategyFactory factory;
+    private final FraudProperties properties;
 
-    public FraudDetectionService(FraudStrategyFactory factory) {
+    public FraudDetectionService(FraudStrategyFactory factory, FraudProperties properties) {
         this.factory = factory;
+        this.properties = properties;
     }
 
     public FraudAnalysisResult analyze(TransactionRequest request) {
@@ -43,7 +46,7 @@ public class FraudDetectionService {
     }
 
     private TransactionStatus determineTransactionStatus(int score) {
-        if (score >= 80) {
+        if (score >= properties.getThresholds().getDecline()) {
             return TransactionStatus.FLAGGED;
         }
         return TransactionStatus.APPROVED;
