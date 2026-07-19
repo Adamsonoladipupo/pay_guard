@@ -17,6 +17,7 @@ import com.pay_guard.pay_guard_bkd.exception.FlaggedTransactionNotFoundException
 import com.pay_guard.pay_guard_bkd.exception.TransactionNotFoundException;
 import com.pay_guard.pay_guard_bkd.mappers.FlaggedTransactionMapper;
 import com.pay_guard.pay_guard_bkd.mappers.TransactionMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +26,8 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
+@Transactional
 public class AdminServiceImpl implements AdminService{
     private final TransactionRepository transactionRepository;
     private final FlaggedTransactionRepository flaggedTransactionRepository;
