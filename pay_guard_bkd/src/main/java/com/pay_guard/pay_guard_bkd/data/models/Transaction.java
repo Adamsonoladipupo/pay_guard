@@ -53,56 +53,72 @@ public class Transaction extends BaseEntity{
     @Column(nullable = false)
     private Boolean flagged = false;
 
-    public static Builder builder() {
-        return new Builder();
+    public void assignMerchant(Merchant merchant) {
+        this.merchant = merchant;
     }
 
-    public static class Builder {
-
-        private final Transaction transaction;
-
-        public Builder() {
-            this.transaction = new Transaction();
-        }
-
-        public Builder merchant(Merchant merchant) {
-            transaction.setMerchant(merchant);
-            return this;
-        }
-
-        public Builder amount(BigDecimal amount) {
-            transaction.setAmount(amount);
-            return this;
-        }
-
-        public Builder cardHash(String cardHash) {
-            transaction.setCardHash(cardHash);
-            return this;
-        }
-
-        public Builder ipAddress(String ipAddress) {
-            transaction.setIpAddress(ipAddress);
-            return this;
-        }
-
-        public Builder status(TransactionStatus status) {
-            transaction.setStatus(status);
-            return this;
-        }
-
-        public Builder transactionType(TransactionType transactionType) {
-            transaction.setTransactionType(transactionType);
-            return this;
-        }
-
-        public Builder riskScore(Integer riskScore) {
-            transaction.setRiskScore(riskScore);
-            return this;
-        }
-
-        public Transaction build() {
-            return transaction;
-        }
-
+    public void assignMaskedCardNumber(String maskedCardNumber) {
+        this.maskedCardNumber = maskedCardNumber;
     }
+
+    public void assignCardHash(String cardHash) {
+        this.cardHash = cardHash;
+    }
+
+    public void assignAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public void assignCurrency(String currency) {
+        this.currency = currency;
+    }
+
+    public void assignIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
+    }
+
+    public void assignDeviceId(String deviceId) {
+        this.deviceId = deviceId;
+    }
+
+    public void assignTransactionType(TransactionType transactionType) {
+        this.transactionType = transactionType;
+    }
+
+    public void updateRiskScore(Integer riskScore) {
+        this.riskScore = riskScore;
+    }
+
+    public void approve() {
+        this.status = TransactionStatus.APPROVED;
+        this.flagged = false;
+    }
+
+    public void reject() {
+        this.status = TransactionStatus.REJECTED;
+        this.flagged = false;
+    }
+
+    public void flag() {
+        this.status = TransactionStatus.FLAGGED;
+        this.flagged = true;
+    }
+
+    public boolean isFlagged() {
+        return Boolean.TRUE.equals(flagged);
+    }
+
+    public boolean isApproved() {
+        return status == TransactionStatus.APPROVED;
+    }
+
+    public boolean isRejected() {
+        return status == TransactionStatus.REJECTED;
+    }
+
+    public boolean isPending() {
+        return status == TransactionStatus.PENDING;
+    }
+
+    
 }
