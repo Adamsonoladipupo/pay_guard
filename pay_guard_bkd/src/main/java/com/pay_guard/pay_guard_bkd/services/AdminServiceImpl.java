@@ -148,11 +148,7 @@ public class AdminServiceImpl implements AdminService{
     private Transaction findTransaction(UUID id) {
 
         return transactionRepository.findById(id)
-                .orElseThrow(() ->
-                        new TransactionNotFoundException(
-                                "Transaction not found."
-                        )
-                );
+                .orElseThrow(() -> new TransactionNotFoundException("Transaction not found."));
     }
 
     private Admin findAdmin(UUID id) {
