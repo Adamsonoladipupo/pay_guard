@@ -95,7 +95,7 @@ public class Transaction extends BaseEntity{
     }
 
     public void reject() {
-        this.status = TransactionStatus.REJECTED;
+        this.status = TransactionStatus.DECLINED;
         this.flagged = false;
     }
 
@@ -113,12 +113,21 @@ public class Transaction extends BaseEntity{
     }
 
     public boolean isRejected() {
-        return status == TransactionStatus.REJECTED;
+        return status == TransactionStatus.DECLINED;
     }
 
     public boolean isPending() {
         return status == TransactionStatus.PENDING;
     }
 
-    
+    public void applyFraudAssessment(Integer riskScore, boolean flagged) {
+
+        updateRiskScore(riskScore);
+
+        if (flagged) {
+            flag();
+        } else {
+            approve();
+        }
+    }
 }
