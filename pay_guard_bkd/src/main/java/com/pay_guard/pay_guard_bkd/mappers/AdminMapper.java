@@ -3,10 +3,13 @@ package com.pay_guard.pay_guard_bkd.mappers;
 import com.pay_guard.pay_guard_bkd.data.models.Admin;
 import com.pay_guard.pay_guard_bkd.dtos.requests.RegisterAdminRequest;
 import com.pay_guard.pay_guard_bkd.dtos.responses.AdminResponse;
+import com.pay_guard.pay_guard_bkd.dtos.responses.LoginResponse;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface AdminMapper {
     Admin toEntity(RegisterAdminRequest request);
     AdminResponse toResponse(Admin admin);
+    RegisterResponse toRegisterResponse(Admin admin);
+    LoginResponse toLoginResponse(Admin admin);
 }
