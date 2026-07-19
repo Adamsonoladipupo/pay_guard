@@ -19,11 +19,11 @@ public class HighAmountStrategy implements FraudDetectionStrategy {
         this.properties = properties;
     }
 
-    private static final BigDecimal LIMIT = new BigDecimal("500000");
+//    private static final BigDecimal LIMIT = new BigDecimal("500000");
 
     @Override
     public FraudCheckResult check(TransactionRequest request) {
-        if (request.amount().compareTo(LIMIT) > 0) {
+        if (request.amount().compareTo(properties.getHighAmount().getLimit()) > 0) {
 
             return new FraudCheckResult(
                     true,

@@ -7,11 +7,8 @@ import java.math.BigDecimal;
 @ConfigurationProperties(prefix = "payguard.fraud")
 public class FraudProperties {
     private Thresholds thresholds = new Thresholds();
-
     private HighAmount highAmount = new HighAmount();
-
     private RateLimit rateLimit = new RateLimit();
-
     private Velocity velocity = new Velocity();
 
     public Thresholds getThresholds() {
@@ -31,11 +28,8 @@ public class FraudProperties {
     }
 
     public static class Thresholds {
-
         private int approve;
-
         private int review;
-
         private int decline;
 
         public int getApprove() {
@@ -79,9 +73,7 @@ public class FraudProperties {
     public static class RateLimit {
 
         private int maxRequests;
-
         private int windowMinutes;
-
         public int getMaxRequests() {
             return maxRequests;
         }
@@ -102,9 +94,7 @@ public class FraudProperties {
     public static class Velocity {
 
         private int maxTransactions;
-
         private int windowMinutes;
-
         public int getMaxTransactions() {
             return maxTransactions;
         }
