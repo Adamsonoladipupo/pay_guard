@@ -3,6 +3,7 @@ package com.pay_guard.pay_guard_bkd.services;
 import com.pay_guard.pay_guard_bkd.data.models.Admin;
 import com.pay_guard.pay_guard_bkd.data.models.FlaggedTransaction;
 import com.pay_guard.pay_guard_bkd.data.models.Transaction;
+import com.pay_guard.pay_guard_bkd.data.models.emuns.TransactionStatus;
 import com.pay_guard.pay_guard_bkd.data.repository.AdminRepository;
 import com.pay_guard.pay_guard_bkd.data.repository.FlaggedTransactionRepository;
 import com.pay_guard.pay_guard_bkd.data.repository.MerchantRepository;
@@ -47,9 +48,9 @@ public class AdminServiceImpl implements AdminService{
 
                 flaggedTransactionRepository.count(),
 
-                transactionRepository.countApprovedTransactions(),
+                transactionRepository.countByStatus(TransactionStatus.APPROVED),
 
-                transactionRepository.countRejectedTransactions(),
+                transactionRepository.countByStatus(TransactionStatus.REJECTED),
 
                 merchantRepository.count(),
 
