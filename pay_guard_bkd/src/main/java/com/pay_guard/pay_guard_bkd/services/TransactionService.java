@@ -43,14 +43,11 @@ public class TransactionService {
         this.eventPublisher = eventPublisher;
     }
 
-    public TransactionResponse createTransaction(
-            TransactionRequest request
-    ) {
+    public TransactionResponse createTransaction(TransactionRequest request) {
 
         Merchant merchant = validateMerchant(request);
 
-        FraudAnalysisResult analysis =
-                analyzeTransaction(request);
+        FraudAnalysisResult analysis = analyzeTransaction(request);
 
         Transaction transaction =
                 buildTransaction(
@@ -61,27 +58,18 @@ public class TransactionService {
 
         transaction = saveTransaction(transaction);
 
-        saveFlaggedTransactions(
-                transaction,
-                analysis
-        );
+        saveFlaggedTransactions(transaction, analysis);
 
         publishTransactionEvent(transaction);
 
         return mapResponse(transaction);
     }
 
-    private Merchant validateMerchant(
-            TransactionRequest request
-    ) {
-        return merchantService.validateAndGetMerchant(
-                request.merchantId()
-        );
+    private Merchant validateMerchant(TransactionRequest request) {
+        return merchantService.validateAndGetMerchant(request.merchantId());
     }
 
-    private FraudAnalysisResult analyzeTransaction(
-            TransactionRequest request
-    ) {
+    private FraudAnalysisResult analyzeTransaction(TransactionRequest request) {
         return fraudDetectionService.analyze(request);
     }
 
@@ -126,9 +114,7 @@ public class TransactionService {
         }
     }
 
-    private void publishTransactionEvent(
-            Transaction transaction
-    ) {
+    private void publishTransactionEvent(Transaction transaction) {
         eventPublisher.publishEvent(
                 new TransactionProcessedEvent(transaction)
         );

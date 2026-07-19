@@ -120,7 +120,7 @@ public class FlaggedTransaction extends BaseEntity {
         return severity == Severity.CRITICAL;
     }
 
-    
+
 
     public void markReviewed(Admin admin, String comment) {
         closeInvestigation(admin, comment);
