@@ -7,10 +7,10 @@ import com.pay_guard.pay_guard_bkd.dtos.requests.RegisterAdminRequest;
 import com.pay_guard.pay_guard_bkd.dtos.responses.LoginResponse;
 import com.pay_guard.pay_guard_bkd.dtos.responses.RegisterAdminResponse;
 import com.pay_guard.pay_guard_bkd.mappers.AdminMapper;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
