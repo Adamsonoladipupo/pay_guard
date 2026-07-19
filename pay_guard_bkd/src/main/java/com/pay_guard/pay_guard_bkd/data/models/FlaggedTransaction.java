@@ -47,4 +47,73 @@ public class FlaggedTransaction extends BaseEntity {
 
     @Column(length = 500)
     private String reviewComment;
+
+    public void assignTransaction(Transaction transaction) {
+        this.transaction = transaction;
+    }
+
+    public void assignSeverity(Severity severity) {
+        this.severity = severity;
+    }
+
+    public void assignReason(String reason) {
+        this.reason = reason;
+    }
+
+    public void assignFraudRule(FraudRule fraudRule) {
+        this.fraudRule = fraudRule;
+    }
+
+    public void assignForReview(Admin admin) {
+        this.reviewedBy = admin;
+    }
+
+    public void startInvestigation() {
+        this.investigationStatus = InvestigationStatus.IN_PROGRESS;
+    }
+
+    public void closeInvestigation(Admin admin, String comment) {
+        this.reviewed = true;
+        this.reviewedBy = admin;
+        this.reviewedAt = LocalDateTime.now();
+        this.reviewComment = comment;
+        this.investigationStatus = InvestigationStatus.RESOLVED;
+    }
+
+    public void reopenInvestigation() {
+        this.reviewed = false;
+        this.reviewedBy = null;
+        this.reviewedAt = null;
+        this.reviewComment = null;
+        this.investigationStatus = InvestigationStatus.OPEN;
+    }
+
+    public boolean isReviewed() {
+        return Boolean.TRUE.equals(reviewed);
+    }
+
+    public boolean isOpen() {
+        return investigationStatus == InvestigationStatus.OPEN;
+    }
+
+    public boolean isInProgress() {
+        return investigationStatus == InvestigationStatus.IN_PROGRESS;
+    }
+
+    public boolean isResolved() {
+        return investigationStatus == InvestigationStatus.RESOLVED;
+    }
+
+    public boolean isHighSeverity() {
+        return severity == Severity.HIGH;
+    }
+
+    public boolean isCriticalSeverity() {
+        return severity == Severity.CRITICAL;
+    }
+
+    public void markReviewed(Admin admin, String comment) {
+        closeInvestigation(admin, comment);
+    }
+    
 }
