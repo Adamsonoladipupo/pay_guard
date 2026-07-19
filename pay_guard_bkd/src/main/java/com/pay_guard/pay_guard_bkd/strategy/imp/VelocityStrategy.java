@@ -1,5 +1,6 @@
 package com.pay_guard.pay_guard_bkd.strategy.imp;
 
+import com.pay_guard.pay_guard_bkd.config.FraudProperties;
 import com.pay_guard.pay_guard_bkd.data.models.emuns.FraudRule;
 import com.pay_guard.pay_guard_bkd.data.models.emuns.Severity;
 import com.pay_guard.pay_guard_bkd.data.repository.TransactionRepository;
@@ -14,9 +15,11 @@ import java.time.LocalDateTime;
 @Component
 public class VelocityStrategy implements FraudDetectionStrategy {
     private final TransactionRepository repository;
+    private final FraudProperties properties;
 
-    public VelocityStrategy(TransactionRepository repository) {
+    public VelocityStrategy(TransactionRepository repository, FraudProperties properties) {
         this.repository = repository;
+        this.properties = properties;
     }
 
     @Override
@@ -25,10 +28,12 @@ public class VelocityStrategy implements FraudDetectionStrategy {
 
         long count = repository.countByCardHashAndCreatedAtAfter(
                 cardHash,
-                LocalDateTime.now().minusMinutes(10)
+                LocalDateTime.now().minusMinutes(
+                        properties.getVelocity().getWindowMinutes()
+                )
         );
 
-        if (count >= 5) {
+        if (count >= properties.getVelocity().getMaxTransactions()) {
 
             return new FraudCheckResult(
                     true,
