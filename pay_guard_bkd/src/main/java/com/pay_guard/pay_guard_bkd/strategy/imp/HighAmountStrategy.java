@@ -1,5 +1,6 @@
 package com.pay_guard.pay_guard_bkd.strategy.imp;
 
+import com.pay_guard.pay_guard_bkd.config.FraudProperties;
 import com.pay_guard.pay_guard_bkd.data.models.emuns.FraudRule;
 import com.pay_guard.pay_guard_bkd.data.models.emuns.Severity;
 import com.pay_guard.pay_guard_bkd.dtos.requests.TransactionRequest;
@@ -11,6 +12,12 @@ import java.math.BigDecimal;
 
 @Component
 public class HighAmountStrategy implements FraudDetectionStrategy {
+
+    private final FraudProperties properties;
+
+    public HighAmountStrategy(FraudProperties properties) {
+        this.properties = properties;
+    }
 
     private static final BigDecimal LIMIT = new BigDecimal("500000");
 
