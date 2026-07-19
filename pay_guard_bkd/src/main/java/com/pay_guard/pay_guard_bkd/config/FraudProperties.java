@@ -1,6 +1,8 @@
-package com.pay_guard.pay_guard_bkd.configuration;
+package com.pay_guard.pay_guard_bkd.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+
+import java.math.BigDecimal;
 
 @ConfigurationProperties(prefix = "payguard.fraud")
 public class FraudProperties {
