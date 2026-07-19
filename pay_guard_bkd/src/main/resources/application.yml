@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: pay_guard_bkd
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/pay_guard
+    username: rootuser
+    password: Password5*
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+payguard:
+
+  fraud:
+
+    thresholds:
+      approve: 30
+      review: 80
+      decline: 120
+
+    high-amount:
+      limit: 500000
+
+    rate-limit:
+      max-requests: 5
+      window-minutes: 1
+
+    velocity:
+      max-transactions: 5
+      window-minutes: 10
