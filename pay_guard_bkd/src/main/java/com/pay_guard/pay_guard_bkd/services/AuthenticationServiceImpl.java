@@ -4,6 +4,7 @@ import com.pay_guard.pay_guard_bkd.data.models.Admin;
 import com.pay_guard.pay_guard_bkd.data.repository.AdminRepository;
 import com.pay_guard.pay_guard_bkd.dtos.requests.LoginRequest;
 import com.pay_guard.pay_guard_bkd.dtos.requests.RegisterAdminRequest;
+import com.pay_guard.pay_guard_bkd.dtos.responses.AdminResponse;
 import com.pay_guard.pay_guard_bkd.dtos.responses.LoginResponse;
 import com.pay_guard.pay_guard_bkd.dtos.responses.RegisterAdminResponse;
 import com.pay_guard.pay_guard_bkd.exception.AdminNotFoundException;
@@ -26,7 +27,7 @@ public class AuthenticationServiceImpl implements AuthenticationService{
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public RegisterAdminResponse registerAdmin(RegisterAdminRequest request) {
+    public AdminResponse registerAdmin(RegisterAdminRequest request) {
 
         validateEmail(request.email());
 
@@ -34,7 +35,7 @@ public class AuthenticationServiceImpl implements AuthenticationService{
 
         Admin savedAdmin = adminRepository.save(admin);
 
-        return adminMapper.toRegisterResponse(savedAdmin);
+        return adminMapper.toResponse(savedAdmin);
     }
 
     @Override
