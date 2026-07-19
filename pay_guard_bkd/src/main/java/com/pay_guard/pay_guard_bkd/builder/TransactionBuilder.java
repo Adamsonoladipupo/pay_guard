@@ -13,6 +13,8 @@ public class TransactionBuilder {
     private TransactionRequest request;
     private FraudAnalysisResult analysis;
 
+    
+
     public TransactionBuilder merchant(Merchant merchant) {
         this.merchant = merchant;
         return this;
