@@ -6,6 +6,7 @@ import com.pay_guard.pay_guard_bkd.data.repository.TransactionRepository;
 import com.pay_guard.pay_guard_bkd.dtos.requests.TransactionRequest;
 import com.pay_guard.pay_guard_bkd.strategy.FraudCheckResult;
 import com.pay_guard.pay_guard_bkd.strategy.FraudDetectionStrategy;
+import com.pay_guard.pay_guard_bkd.util.CardHashUtil;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;

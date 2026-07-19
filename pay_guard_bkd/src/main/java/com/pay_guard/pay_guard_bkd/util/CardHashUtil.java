@@ -1,4 +1,4 @@
-package com.pay_guard.pay_guard_bkd.utils;
+package com.pay_guard.pay_guard_bkd.util;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
