@@ -52,10 +52,17 @@ public class Transaction extends BaseEntity{
     @JoinColumn(name = "merchant_id", nullable = false)
     private Merchant merchant;
 
+    @OneToMany(
+            mappedBy = "transaction",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<FlaggedTransaction> flaggedTransactions = new ArrayList<>();
+
     @Column(nullable = false)
     private Boolean flagged = false;
 
-    
+
 
 
 
