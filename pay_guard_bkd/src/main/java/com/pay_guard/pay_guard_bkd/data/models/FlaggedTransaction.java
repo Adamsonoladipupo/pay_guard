@@ -48,6 +48,8 @@ public class FlaggedTransaction extends BaseEntity {
     @Column(length = 500)
     private String reviewComment;
 
+
+
     public void assignTransaction(Transaction transaction) {
         this.transaction = transaction;
     }
@@ -63,6 +65,9 @@ public class FlaggedTransaction extends BaseEntity {
     public void assignFraudRule(FraudRule fraudRule) {
         this.fraudRule = fraudRule;
     }
+
+
+
 
     public void assignForReview(Admin admin) {
         this.reviewedBy = admin;
@@ -88,6 +93,9 @@ public class FlaggedTransaction extends BaseEntity {
         this.investigationStatus = InvestigationStatus.OPEN;
     }
 
+
+
+
     public boolean isReviewed() {
         return Boolean.TRUE.equals(reviewed);
     }
@@ -112,8 +120,10 @@ public class FlaggedTransaction extends BaseEntity {
         return severity == Severity.CRITICAL;
     }
 
+    
+
     public void markReviewed(Admin admin, String comment) {
         closeInvestigation(admin, comment);
     }
-    
+
 }
