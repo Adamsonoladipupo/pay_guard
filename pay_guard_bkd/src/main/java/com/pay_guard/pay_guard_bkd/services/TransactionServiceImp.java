@@ -14,9 +14,9 @@ import com.pay_guard.pay_guard_bkd.exception.TransactionNotFoundException;
 import com.pay_guard.pay_guard_bkd.mappers.TransactionMapper;
 import com.pay_guard.pay_guard_bkd.services.model.FraudAnalysisResult;
 import com.pay_guard.pay_guard_bkd.strategy.FraudCheckResult;
-import jakarta.transaction.Transactional;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
@@ -69,8 +69,9 @@ public class TransactionServiceImp implements TransactionService{
         return mapResponse(transaction);
     }
 
-    
+
     @Override
+    @Transactional(readOnly = true)
     public TransactionResponse getTransaction(UUID transactionId) {
         Transaction transaction =
                 transactionRepository.findById(transactionId)
@@ -83,6 +84,7 @@ public class TransactionServiceImp implements TransactionService{
 
 
     @Override
+    @Transactional(readOnly = true)
     public List<TransactionResponse> getTransactions() {
         return List.of();
     }
