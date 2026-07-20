@@ -24,7 +24,7 @@ import java.util.UUID;
 @Transactional
 public class TransactionServiceImp implements TransactionService{
     private final TransactionRepository transactionRepository;
-    private final MerchantServiceImp merchantServiceImp;
+    private final MerchantService merchantService;
     private final FraudDetectionService fraudDetectionService;
     private final FlaggedTransactionRepository flaggedRepository;
     private final TransactionMapper transactionMapper;
@@ -32,14 +32,14 @@ public class TransactionServiceImp implements TransactionService{
 
     public TransactionServiceImp(
             TransactionRepository transactionRepository,
-            MerchantServiceImp merchantServiceImp,
+            MerchantService merchantService,
             FraudDetectionService fraudDetectionService,
             FlaggedTransactionRepository flaggedRepository,
             TransactionMapper transactionMapper,
             ApplicationEventPublisher eventPublisher
     ) {
         this.transactionRepository = transactionRepository;
-        this.merchantServiceImp = merchantServiceImp;
+        this.merchantService = merchantService;
         this.fraudDetectionService = fraudDetectionService;
         this.flaggedRepository = flaggedRepository;
         this.transactionMapper = transactionMapper;
@@ -79,7 +79,7 @@ public class TransactionServiceImp implements TransactionService{
     }
 
     private Merchant validateMerchant(TransactionRequest request) {
-        return merchantServiceImp.validateAndGetMerchant(request.merchantId());
+        return merchantService.validateAndGetMerchant(request.merchantId());
     }
 
     private FraudAnalysisResult analyzeTransaction(TransactionRequest request) {
