@@ -22,6 +22,8 @@ public class MerchantServiceImp implements MerchantService{
         this.repository = repository;
         this.merchantMapper = merchantMapper;
     }
+
+    @Override
     public Merchant validateAndGetMerchant(String merchantId) {
 
         Merchant merchant = repository.findByMerchantId(merchantId)
@@ -36,16 +38,26 @@ public class MerchantServiceImp implements MerchantService{
 
     @Override
     public MerchantResponse createMerchant(MerchantRequest request) {
-        return null;
+        Merchant merchant = merchantMapper.toEntity(request);
+        Merchant savedMerchant = repository.save(merchant);
+        return merchantMapper.toResponse(savedMerchant);
     }
 
     @Override
     public MerchantResponse getMerchant(UUID merchantId) {
-        return null;
+        Merchant merchant = repository.findById(merchantId)
+                .orElseThrow(() ->
+                        new MerchantNotFoundException(
+                                merchantId.toString()
+                        ));
+        return merchantMapper.toResponse(merchant);
     }
 
     @Override
     public List<MerchantResponse> getMerchants() {
-        return List.of();
+        return repository.findAll()
+                .stream()
+                .map(merchantMapper::toResponse)
+                .toList();
     }
 }
