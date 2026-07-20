@@ -98,15 +98,12 @@ public record FraudProperties {
         public int getMaxTransactions() {
             return maxTransactions;
         }
-
         public void setMaxTransactions(int maxTransactions) {
             this.maxTransactions = maxTransactions;
         }
-
         public int getWindowMinutes() {
             return windowMinutes;
         }
-
         public void setWindowMinutes(int windowMinutes) {
             this.windowMinutes = windowMinutes;
         }
