@@ -7,6 +7,7 @@ import com.pay_guard.pay_guard_bkd.dtos.requests.MerchantRequest;
 import com.pay_guard.pay_guard_bkd.dtos.responses.MerchantResponse;
 import com.pay_guard.pay_guard_bkd.exception.MerchantInactiveException;
 import com.pay_guard.pay_guard_bkd.exception.MerchantNotFoundException;
+import com.pay_guard.pay_guard_bkd.mappers.MerchantMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,9 +16,11 @@ import java.util.UUID;
 @Service
 public class MerchantServiceImp implements MerchantService{
     private final MerchantRepository repository;
+    private final MerchantMapper merchantMapper;
 
-    public MerchantServiceImp(MerchantRepository repository) {
+    public MerchantServiceImp(MerchantRepository repository, MerchantMapper merchantMapper) {
         this.repository = repository;
+        this.merchantMapper = merchantMapper;
     }
     public Merchant validateAndGetMerchant(String merchantId) {
 
