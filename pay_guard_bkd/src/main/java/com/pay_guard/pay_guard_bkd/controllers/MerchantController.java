@@ -16,7 +16,7 @@ import java.util.UUID;
 @RequestMapping("/api/v1/merchants")
 @RequiredArgsConstructor
 public class MerchantController {
-    private final MerchantServiceImp merchantServiceImp;
+    private final MerchantServiceImp merchantServiceImp ;
 
     @PostMapping
     public ResponseEntity<MerchantResponse> createMerchant(
