@@ -8,10 +8,10 @@ import com.pay_guard.pay_guard_bkd.exception.MerchantNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MerchantService {
+public class MerchantServiceImp {
     private final MerchantRepository repository;
 
-    public MerchantService(MerchantRepository repository) {
+    public MerchantServiceImp(MerchantRepository repository) {
         this.repository = repository;
     }
     public Merchant validateAndGetMerchant(String merchantId) {

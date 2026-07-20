@@ -2,7 +2,7 @@ package com.pay_guard.pay_guard_bkd.controllers;
 
 import com.pay_guard.pay_guard_bkd.dtos.requests.TransactionRequest;
 import com.pay_guard.pay_guard_bkd.dtos.responses.TransactionResponse;
-import com.pay_guard.pay_guard_bkd.services.TransactionService;
+import com.pay_guard.pay_guard_bkd.services.TransactionServiceImp;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,7 +15,7 @@ import java.util.UUID;
 @RequestMapping("/api/v1/transactions")
 @RequiredArgsConstructor
 public class TransactionController {
-    private final TransactionService transactionService;
+    private final TransactionServiceImp transactionServiceImp;
 
     @PostMapping
     public ResponseEntity<TransactionResponse> processTransaction(
@@ -23,7 +23,7 @@ public class TransactionController {
     ) {
 
         TransactionResponse response =
-                transactionService.processTransaction(request);
+                transactionServiceImp.processTransaction(request);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -36,7 +36,7 @@ public class TransactionController {
     ) {
 
         return ResponseEntity.ok(
-                transactionService.getTransaction(transactionId)
+                transactionServiceImp.getTransaction(transactionId)
         );
     }
 }

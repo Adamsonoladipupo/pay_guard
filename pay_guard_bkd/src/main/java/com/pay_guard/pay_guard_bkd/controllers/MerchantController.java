@@ -2,7 +2,7 @@ package com.pay_guard.pay_guard_bkd.controllers;
 
 import com.pay_guard.pay_guard_bkd.dtos.requests.MerchantRequest;
 import com.pay_guard.pay_guard_bkd.dtos.responses.MerchantResponse;
-import com.pay_guard.pay_guard_bkd.services.MerchantService;
+import com.pay_guard.pay_guard_bkd.services.MerchantServiceImp;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,7 +16,7 @@ import java.util.UUID;
 @RequestMapping("/api/v1/merchants")
 @RequiredArgsConstructor
 public class MerchantController {
-    private final MerchantService merchantService;
+    private final MerchantServiceImp merchantServiceImp;
 
     @PostMapping
     public ResponseEntity<MerchantResponse> createMerchant(
@@ -26,7 +26,7 @@ public class MerchantController {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(
-                        merchantService.createMerchant(request)
+                        merchantServiceImp.createMerchant(request)
                 );
     }
 
@@ -34,7 +34,7 @@ public class MerchantController {
     public ResponseEntity<List<MerchantResponse>> getMerchants() {
 
         return ResponseEntity.ok(
-                merchantService.getMerchants()
+                merchantServiceImp.getMerchants()
         );
     }
 
@@ -44,7 +44,7 @@ public class MerchantController {
     ) {
 
         return ResponseEntity.ok(
-                merchantService.getMerchant(merchantId)
+                merchantServiceImp.getMerchant(merchantId)
         );
     }
 }
