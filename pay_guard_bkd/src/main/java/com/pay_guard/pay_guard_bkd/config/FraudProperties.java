@@ -1,9 +1,15 @@
 package com.pay_guard.pay_guard_bkd.config;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.validation.annotation.Validated;
 
 import java.math.BigDecimal;
 
+@Getter
+@Setter
+@Validated
 @ConfigurationProperties(prefix = "payguard.fraud")
 public class FraudProperties {
     private Thresholds thresholds = new Thresholds();
