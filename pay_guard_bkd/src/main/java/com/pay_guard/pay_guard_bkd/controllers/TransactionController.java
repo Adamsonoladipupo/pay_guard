@@ -21,10 +21,8 @@ public class TransactionController {
     public ResponseEntity<TransactionResponse> processTransaction(
             @Valid @RequestBody TransactionRequest request
     ) {
-
         TransactionResponse response =
-                transactionServiceImp.processTransaction(request);
-
+                transactionServiceImp.createTransaction(request);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(response);
