@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import java.math.BigDecimal;
 
 @ConfigurationProperties(prefix = "payguard.fraud")
-public record FraudProperties {
+public class FraudProperties {
     private Thresholds thresholds = new Thresholds();
     private HighAmount highAmount = new HighAmount();
     private RateLimit rateLimit = new RateLimit();
