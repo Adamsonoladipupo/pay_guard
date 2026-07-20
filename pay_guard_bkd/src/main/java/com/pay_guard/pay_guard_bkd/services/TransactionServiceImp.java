@@ -17,9 +17,12 @@ import jakarta.transaction.Transactional;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.UUID;
+
 @Service
 @Transactional
-public class TransactionServiceImp {
+public class TransactionServiceImp implements TransactionService{
     private final TransactionRepository transactionRepository;
     private final MerchantServiceImp merchantServiceImp;
     private final FraudDetectionService fraudDetectionService;
@@ -63,6 +66,16 @@ public class TransactionServiceImp {
         publishTransactionEvent(transaction);
 
         return mapResponse(transaction);
+    }
+
+    @Override
+    public TransactionResponse getTransaction(UUID transactionId) {
+        return null;
+    }
+
+    @Override
+    public List<TransactionResponse> getTransactions() {
+        return List.of();
     }
 
     private Merchant validateMerchant(TransactionRequest request) {
