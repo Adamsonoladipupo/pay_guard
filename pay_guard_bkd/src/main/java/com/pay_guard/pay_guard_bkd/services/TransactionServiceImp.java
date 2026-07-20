@@ -10,6 +10,7 @@ import com.pay_guard.pay_guard_bkd.data.repository.TransactionRepository;
 import com.pay_guard.pay_guard_bkd.dtos.requests.TransactionRequest;
 import com.pay_guard.pay_guard_bkd.dtos.responses.TransactionResponse;
 import com.pay_guard.pay_guard_bkd.event.TransactionProcessedEvent;
+import com.pay_guard.pay_guard_bkd.exception.TransactionNotFoundException;
 import com.pay_guard.pay_guard_bkd.mappers.TransactionMapper;
 import com.pay_guard.pay_guard_bkd.services.model.FraudAnalysisResult;
 import com.pay_guard.pay_guard_bkd.strategy.FraudCheckResult;
@@ -68,15 +69,24 @@ public class TransactionServiceImp implements TransactionService{
         return mapResponse(transaction);
     }
 
+    
     @Override
     public TransactionResponse getTransaction(UUID transactionId) {
-        return null;
+        Transaction transaction =
+                transactionRepository.findById(transactionId)
+                        .orElseThrow(() ->
+                                new TransactionNotFoundException(
+                                        "Transaction not found."
+                                ));
+        return transactionMapper.toResponse(transaction);
     }
+
 
     @Override
     public List<TransactionResponse> getTransactions() {
         return List.of();
     }
+
 
     private Merchant validateMerchant(TransactionRequest request) {
         return merchantService.validateAndGetMerchant(request.merchantId());
