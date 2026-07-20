@@ -50,22 +50,16 @@ public class TransactionServiceImp implements TransactionService{
     public TransactionResponse createTransaction(TransactionRequest request) {
 
         Merchant merchant = validateMerchant(request);
-
         FraudAnalysisResult analysis = analyzeTransaction(request);
-
         Transaction transaction =
                 buildTransaction(
                         merchant,
                         request,
                         analysis
                 );
-
         transaction = saveTransaction(transaction);
-
         saveFlaggedTransactions(transaction, analysis);
-
         publishTransactionEvent(transaction);
-
         return mapResponse(transaction);
     }
 
@@ -86,7 +80,10 @@ public class TransactionServiceImp implements TransactionService{
     @Override
     @Transactional(readOnly = true)
     public List<TransactionResponse> getTransactions() {
-        return List.of();
+        return transactionRepository.findAll()
+                .stream()
+                .map(transactionMapper::toResponse)
+                .toList();
     }
 
 
