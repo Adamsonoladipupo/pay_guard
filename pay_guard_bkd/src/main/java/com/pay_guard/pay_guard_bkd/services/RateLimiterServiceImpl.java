@@ -12,8 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class RateLimiterServiceImpl implements RateLimiterService{
     private static final int MAX_REQUESTS = 5;
 
-    private static final Duration WINDOW =
-            Duration.ofMinutes(1);
+    private static final Duration WINDOW = Duration.ofMinutes(1);
 
     private final ConcurrentHashMap<String, Deque<Instant>>
             requestStore = new ConcurrentHashMap<>();
@@ -22,12 +21,9 @@ public class RateLimiterServiceImpl implements RateLimiterService{
     public boolean isAllowed(String ipAddress) {
 
         Instant now = Instant.now();
-
         Deque<Instant> requests =
                 requestStore.computeIfAbsent(
-                        ipAddress,
-                        key -> new ArrayDeque<>()
-                );
+                        ipAddress, key -> new ArrayDeque<>());
 
         synchronized (requests) {
 

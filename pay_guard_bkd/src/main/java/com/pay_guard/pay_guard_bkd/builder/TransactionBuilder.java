@@ -35,18 +35,18 @@ public class TransactionBuilder {
         Transaction transaction = new Transaction();
 
         transaction.setMerchant(merchant);
+
         transaction.setAmount(request.amount());
+        transaction.setCurrency(request.currency());
         transaction.setTransactionType(request.transactionType());
         transaction.setCardHash(CardHashUtil.hash(request.cardNumber()));
+        transaction.setMaskedCardNumber(maskCardNumber(request.cardNumber()));
         transaction.setIpAddress(request.ipAddress());
+        transaction.setDeviceId(request.deviceId());
 
-        transaction.setStatus(
-                analysis.recommendedStatus()
-        );
-
-        transaction.setRiskScore(
-                analysis.totalRiskScore()
-        );
+        transaction.setStatus(analysis.recommendedStatus());
+        transaction.setRiskScore(analysis.totalRiskScore());
+        transaction.setFlagged(analysis.fraudDetected());
 
         return transaction;
     }
@@ -56,5 +56,9 @@ public class TransactionBuilder {
         request = null;
         analysis = null;
         return this;
+    }
+
+    private String maskCardNumber(String cardNumber) {
+        return  "************" + cardNumber.substring(cardNumber.length() - 4);
     }
 }

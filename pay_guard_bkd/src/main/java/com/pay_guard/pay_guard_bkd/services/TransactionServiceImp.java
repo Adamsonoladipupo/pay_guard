@@ -30,6 +30,7 @@ public class TransactionServiceImp implements TransactionService{
     private final FlaggedTransactionRepository flaggedRepository;
     private final TransactionMapper transactionMapper;
     private final ApplicationEventPublisher eventPublisher;
+    private final TransactionBuilder transactionBuilder;
 
     public TransactionServiceImp(
             TransactionRepository transactionRepository,
@@ -37,7 +38,8 @@ public class TransactionServiceImp implements TransactionService{
             FraudDetectionService fraudDetectionService,
             FlaggedTransactionRepository flaggedRepository,
             TransactionMapper transactionMapper,
-            ApplicationEventPublisher eventPublisher
+            ApplicationEventPublisher eventPublisher,
+            TransactionBuilder transactionBuilder
     ) {
         this.transactionRepository = transactionRepository;
         this.merchantService = merchantService;
@@ -45,6 +47,7 @@ public class TransactionServiceImp implements TransactionService{
         this.flaggedRepository = flaggedRepository;
         this.transactionMapper = transactionMapper;
         this.eventPublisher = eventPublisher;
+        this.transactionBuilder = transactionBuilder;
     }
 
     @Override
@@ -52,12 +55,20 @@ public class TransactionServiceImp implements TransactionService{
 
         Merchant merchant = validateMerchant(request);
         FraudAnalysisResult analysis = analyzeTransaction(request);
-        Transaction transaction =
-                buildTransaction(
-                        merchant,
-                        request,
-                        analysis
-                );
+//        Transaction transaction =
+//                buildTransaction(
+//                        merchant,
+//                        request,
+//                        analysis
+//                );
+
+        Transaction transaction = transactionBuilder
+                .reset()
+                .merchant(merchant)
+                .request(request)
+                .analysis(analysis)
+                .build();
+
         transaction = saveTransaction(transaction);
         saveFlaggedTransactions(transaction, analysis);
         publishTransactionEvent(transaction);
@@ -96,18 +107,18 @@ public class TransactionServiceImp implements TransactionService{
         return fraudDetectionService.analyze(request);
     }
 
-    private Transaction buildTransaction(
-            Merchant merchant,
-            TransactionRequest request,
-            FraudAnalysisResult analysis
-    ) {
-
-        return new TransactionBuilder()
-                .merchant(merchant)
-                .request(request)
-                .analysis(analysis)
-                .build();
-    }
+//    private Transaction buildTransaction(
+//            Merchant merchant,
+//            TransactionRequest request,
+//            FraudAnalysisResult analysis
+//    ) {
+//
+//        return new TransactionBuilder()
+//                .merchant(merchant)
+//                .request(request)
+//                .analysis(analysis)
+//                .build();
+//    }
 
     private Transaction saveTransaction(
             Transaction transaction

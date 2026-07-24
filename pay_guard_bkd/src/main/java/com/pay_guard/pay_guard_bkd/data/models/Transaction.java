@@ -22,7 +22,7 @@ public class Transaction extends BaseEntity{
     @Column(nullable = false, length = 20)
     private String maskedCardNumber;
 
-    @Column(nullable = false, unique = true, length = 100)
+    @Column(nullable = false, length = 100)
     private String cardHash;
 
     @Column(nullable = false, precision = 19, scale = 2)

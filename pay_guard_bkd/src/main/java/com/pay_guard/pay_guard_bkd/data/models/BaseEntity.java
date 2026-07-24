@@ -18,10 +18,8 @@ import java.util.UUID;
 @EntityListeners(AuditingEntityListener.class)
 public abstract class BaseEntity {
     @Id
-    @GeneratedValue
-    @UuidGenerator
-    @Column(nullable = true, updatable = true)
-    private UUID Id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     @CreatedDate
     @Column(nullable = true, updatable = true)

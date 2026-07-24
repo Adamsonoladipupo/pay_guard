@@ -6,9 +6,6 @@ import jakarta.validation.constraints.NotNull;
 
 public record MerchantRequest(
         @NotBlank
-        String merchantId,
-
-        @NotBlank
         String merchantName,
 
         @NotNull

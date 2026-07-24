@@ -1,6 +1,7 @@
 package com.pay_guard.pay_guard_bkd.services;
 
 import com.pay_guard.pay_guard_bkd.data.models.Admin;
+import com.pay_guard.pay_guard_bkd.data.models.emuns.UserRole;
 import com.pay_guard.pay_guard_bkd.data.repository.AdminRepository;
 import com.pay_guard.pay_guard_bkd.dtos.requests.LoginRequest;
 import com.pay_guard.pay_guard_bkd.dtos.requests.RegisterAdminRequest;
@@ -10,7 +11,12 @@ import com.pay_guard.pay_guard_bkd.exception.AdminNotFoundException;
 import com.pay_guard.pay_guard_bkd.exception.EmailAlreadyExistsException;
 import com.pay_guard.pay_guard_bkd.exception.InvalidCredentialsException;
 import com.pay_guard.pay_guard_bkd.mappers.AdminMapper;
+import com.pay_guard.pay_guard_bkd.security.AdminDetailsService;
+import com.pay_guard.pay_guard_bkd.security.JwtService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +30,9 @@ public class AuthenticationServiceImpl implements AuthenticationService{
     private final AdminRepository adminRepository;
     private final AdminMapper adminMapper;
     private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
+    private final AuthenticationManager authenticationManager;
+    private final AdminDetailsService adminDetailsService;
 
     @Override
     public RegisterResponse registerAdmin(RegisterAdminRequest request) {
@@ -37,14 +46,19 @@ public class AuthenticationServiceImpl implements AuthenticationService{
     @Transactional(readOnly = true)
     public LoginResponse login(LoginRequest request) {
 
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.email(), request.password()));
+
         Admin admin = findAdminByEmail(request.email());
 
-        validatePassword(
-                request.password(),
-                admin.getPassword()
-        );
+        UserDetails userDetails = adminDetailsService.loadUserByUsername(request.email());
 
-        return adminMapper.toLoginResponse(admin);
+        String token = jwtService.generateToken(userDetails);
+
+        return new LoginResponse(
+                token,
+                "Bearer",
+                "Login successful."
+        );
     }
 
     @Override
@@ -94,7 +108,8 @@ public class AuthenticationServiceImpl implements AuthenticationService{
                         request.password()
                 )
         );
-
+        admin.setRole(UserRole.ADMIN);
+        admin.setEnabled(true);
         return admin;
     }
 
@@ -108,11 +123,7 @@ public class AuthenticationServiceImpl implements AuthenticationService{
                 );
     }
 
-    private void validatePassword(
-            String rawPassword,
-            String encodedPassword
-    ) {
-
+    private void validatePassword(String rawPassword, String encodedPassword) {
         if (!passwordEncoder.matches(
                 rawPassword,
                 encodedPassword

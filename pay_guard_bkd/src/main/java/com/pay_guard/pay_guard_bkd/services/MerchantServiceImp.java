@@ -1,6 +1,7 @@
 package com.pay_guard.pay_guard_bkd.services;
 
 import com.pay_guard.pay_guard_bkd.data.models.Merchant;
+import com.pay_guard.pay_guard_bkd.data.models.emuns.MerchantCategory;
 import com.pay_guard.pay_guard_bkd.data.models.emuns.MerchantStatus;
 import com.pay_guard.pay_guard_bkd.data.repository.MerchantRepository;
 import com.pay_guard.pay_guard_bkd.dtos.requests.MerchantRequest;
@@ -39,7 +40,12 @@ public class MerchantServiceImp implements MerchantService{
     @Override
     public MerchantResponse createMerchant(MerchantRequest request) {
         Merchant merchant = merchantMapper.toEntity(request);
+        merchant.setMerchantId(generateMerchantId());
+        if (merchant.getMerchantCategory() == null) {
+            merchant.setMerchantCategory(MerchantCategory.OTHER);
+        }
         Merchant savedMerchant = repository.save(merchant);
+
         return merchantMapper.toResponse(savedMerchant);
     }
 
@@ -59,5 +65,18 @@ public class MerchantServiceImp implements MerchantService{
                 .stream()
                 .map(merchantMapper::toResponse)
                 .toList();
+    }
+
+    private String generateMerchantId() {
+        String merchantId;
+        do {
+            merchantId = "PG-MER-"
+                    + UUID.randomUUID()
+                    .toString()
+                    .substring(0, 8)
+                    .toUpperCase();
+
+        } while (repository.existsByMerchantId(merchantId));
+        return merchantId;
     }
 }

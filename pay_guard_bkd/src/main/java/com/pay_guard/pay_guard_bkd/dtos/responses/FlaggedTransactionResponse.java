@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public record FlaggedTransactionResponse(
         UUID id,
-        Long transactionId,
+        UUID transactionId,
         Severity severity,
         String reason,
         String fraudRule,

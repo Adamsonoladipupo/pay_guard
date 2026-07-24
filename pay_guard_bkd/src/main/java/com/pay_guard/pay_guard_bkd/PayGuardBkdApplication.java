@@ -1,11 +1,12 @@
 package com.pay_guard.pay_guard_bkd;
 
-import com.pay_guard.pay_guard_bkd.config.FraudProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
-@EnableConfigurationProperties(FraudProperties.class)
+@ConfigurationPropertiesScan
+@EnableJpaAuditing
 @SpringBootApplication
 public class PayGuardBkdApplication {
 

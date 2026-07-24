@@ -8,8 +8,7 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface TransactionMapper {
-    Transaction toEntity(TransactionRequest request);
-    @Mapping(target = "maskedCardNumber", ignore = true)
+//    Transaction toEntity(TransactionRequest request);
     @Mapping(target = "merchantId", source = "merchant.merchantId")
     TransactionResponse toResponse(Transaction transaction);
 }

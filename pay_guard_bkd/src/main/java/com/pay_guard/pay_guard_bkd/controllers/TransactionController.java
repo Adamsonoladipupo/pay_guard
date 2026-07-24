@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -35,6 +36,13 @@ public class TransactionController {
 
         return ResponseEntity.ok(
                 transactionServiceImp.getTransaction(transactionId)
+        );
+    }
+
+    @GetMapping
+    public ResponseEntity<List<TransactionResponse>> getTransactions() {
+        return ResponseEntity.ok(
+                transactionServiceImp.getTransactions()
         );
     }
 }
