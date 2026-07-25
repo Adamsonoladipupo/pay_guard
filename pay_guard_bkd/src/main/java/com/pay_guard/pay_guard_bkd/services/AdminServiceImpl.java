@@ -3,6 +3,7 @@ package com.pay_guard.pay_guard_bkd.services;
 import com.pay_guard.pay_guard_bkd.data.models.Admin;
 import com.pay_guard.pay_guard_bkd.data.models.FlaggedTransaction;
 import com.pay_guard.pay_guard_bkd.data.models.Transaction;
+import com.pay_guard.pay_guard_bkd.data.models.emuns.InvestigationStatus;
 import com.pay_guard.pay_guard_bkd.data.models.emuns.TransactionStatus;
 import com.pay_guard.pay_guard_bkd.data.repository.AdminRepository;
 import com.pay_guard.pay_guard_bkd.data.repository.FlaggedTransactionRepository;
@@ -43,21 +44,15 @@ public class AdminServiceImpl implements AdminService{
     public DashboardSummaryResponse getDashboardSummary() {
 
         return new DashboardSummaryResponse(
-
                 transactionRepository.count(),
-
                 flaggedTransactionRepository.count(),
-
                 transactionRepository.countByStatus(TransactionStatus.APPROVED),
-
-                transactionRepository.countByStatus(TransactionStatus.REJECTED),
-
+                transactionRepository.countByStatus(TransactionStatus.DECLINED),
                 merchantRepository.count(),
-
                 adminRepository.count()
-
         );
     }
+
     @Override
     @Transactional(readOnly = true)
     public List<FlaggedTransactionResponse> getFlaggedTransactions() {
@@ -71,7 +66,6 @@ public class AdminServiceImpl implements AdminService{
     @Override
     @Transactional(readOnly = true)
     public FlaggedTransactionResponse getFlaggedTransaction(UUID flaggedTransactionId) {
-
         return flaggedTransactionMapper.toResponse(
                 findFlaggedTransaction(flaggedTransactionId)
         );
@@ -89,24 +83,30 @@ public class AdminServiceImpl implements AdminService{
 
         Admin admin = findAdmin(adminId);
 
-        flaggedTransaction.setReviewed(true);
-        flaggedTransaction.setReviewedAt(LocalDateTime.now());
-        flaggedTransaction.setReviewedBy(admin);
-        flaggedTransaction.setReviewComment(request.reviewComment());
-        flaggedTransaction.setInvestigationStatus(
-                request.investigationStatus()
+
+        flaggedTransaction.review(
+                admin,
+                request.investigationStatus(),
+                request.reviewComment()
         );
+
+
+        Transaction transaction =
+                flaggedTransaction.getTransaction();
+        if (request.investigationStatus() == InvestigationStatus.RESOLVED) {
+            transaction.setStatus(TransactionStatus.APPROVED);
+        } else {
+            transaction.setStatus(TransactionStatus.FLAGGED);
+        }
+
+        transactionRepository.save(transaction);
 
         flaggedTransactionRepository.save(flaggedTransaction);
 
         return new ReviewResponse(
-
                 flaggedTransaction.getId(),
-
                 flaggedTransaction.getInvestigationStatus(),
-
                 flaggedTransaction.getReviewComment(),
-
                 "Transaction reviewed successfully."
 
         );
@@ -125,18 +125,12 @@ public class AdminServiceImpl implements AdminService{
     @Override
     @Transactional(readOnly = true)
     public TransactionResponse getTransaction(UUID transactionId) {
-
         return transactionMapper.toResponse(
                 findTransaction(transactionId)
         );
     }
 
-
-
-
-
     private FlaggedTransaction findFlaggedTransaction(UUID id) {
-
         return flaggedTransactionRepository.findById(id)
                 .orElseThrow(() ->
                         new FlaggedTransactionNotFoundException(
@@ -146,13 +140,15 @@ public class AdminServiceImpl implements AdminService{
     }
 
     private Transaction findTransaction(UUID id) {
-
         return transactionRepository.findById(id)
-                .orElseThrow(() -> new TransactionNotFoundException("Transaction not found."));
+                .orElseThrow(() ->
+                        new TransactionNotFoundException(
+                                "Transaction not found."
+                        )
+                );
     }
 
     private Admin findAdmin(UUID id) {
-
         return adminRepository.findById(id)
                 .orElseThrow(() ->
                         new AdminNotFoundException(

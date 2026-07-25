@@ -93,6 +93,18 @@ public class FlaggedTransaction extends BaseEntity {
         this.investigationStatus = InvestigationStatus.OPEN;
     }
 
+    public void review(
+            Admin admin,
+            InvestigationStatus status,
+            String comment
+    ) {
+        this.reviewed = true;
+        this.reviewedBy = admin;
+        this.reviewedAt = LocalDateTime.now();
+        this.reviewComment = comment;
+        this.investigationStatus = status;
+    }
+
 
 
 
