@@ -134,8 +134,8 @@ public class FlaggedTransaction extends BaseEntity {
 
 
 
-    public void markReviewed(Admin admin, String comment, InvestigationStatus status) {
-        closeInvestigation(admin, comment, status);
+    public void markReviewed(Admin admin, InvestigationStatus status, String comment) {
+        closeInvestigation(admin, status, comment);
     }
 
 }
