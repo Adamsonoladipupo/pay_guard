@@ -18,7 +18,8 @@ public class AuditAspect {
                     AuditAspect.class
             );
     @AfterReturning(
-            value = "@annotation(audit)"
+            value = "@annotation(audit)",
+            returning = "result"
     )
     public void logAudit(
             JoinPoint joinPoint,
