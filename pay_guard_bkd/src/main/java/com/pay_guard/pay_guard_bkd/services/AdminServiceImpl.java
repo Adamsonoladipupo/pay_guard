@@ -89,14 +89,16 @@ public class AdminServiceImpl implements AdminService{
 
         FlaggedTransaction flaggedTransaction =
                 findFlaggedTransaction(flaggedTransactionId);
-        
+
+        Admin admin = findAdmin(adminId);
+
         Authentication authentication =
                 SecurityContextHolder
                         .getContext()
                         .getAuthentication();
 
 
-        Admin admin = findAdmin(adminId);
+        Admin admin = findAdmin(authentication.getName());
 
         flaggedTransaction.setReviewed(true);
         flaggedTransaction.setReviewedAt(LocalDateTime.now());
