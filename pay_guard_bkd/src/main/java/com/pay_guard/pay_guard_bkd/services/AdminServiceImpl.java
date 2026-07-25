@@ -1,5 +1,6 @@
 package com.pay_guard.pay_guard_bkd.services;
 
+import com.pay_guard.pay_guard_bkd.annotation.Audit;
 import com.pay_guard.pay_guard_bkd.data.models.Admin;
 import com.pay_guard.pay_guard_bkd.data.models.FlaggedTransaction;
 import com.pay_guard.pay_guard_bkd.data.models.Transaction;
@@ -72,6 +73,7 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
+    @Audit("Flagged Transaction Reviewed")
     public ReviewResponse reviewTransaction(
             UUID flaggedTransactionId,
             UUID adminId,

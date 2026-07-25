@@ -1,5 +1,6 @@
 package com.pay_guard.pay_guard_bkd.services;
 
+import com.pay_guard.pay_guard_bkd.annotation.Audit;
 import com.pay_guard.pay_guard_bkd.data.models.Merchant;
 import com.pay_guard.pay_guard_bkd.data.models.emuns.MerchantCategory;
 import com.pay_guard.pay_guard_bkd.data.models.emuns.MerchantStatus;
@@ -38,6 +39,7 @@ public class MerchantServiceImp implements MerchantService{
     }
 
     @Override
+    @Audit("Merchant Created")
     public MerchantResponse createMerchant(MerchantRequest request) {
         Merchant merchant = merchantMapper.toEntity(request);
         merchant.setMerchantId(generateMerchantId());

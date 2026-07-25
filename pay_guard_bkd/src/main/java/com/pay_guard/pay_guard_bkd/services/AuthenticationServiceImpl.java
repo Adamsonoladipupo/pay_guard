@@ -1,5 +1,6 @@
 package com.pay_guard.pay_guard_bkd.services;
 
+import com.pay_guard.pay_guard_bkd.annotation.Audit;
 import com.pay_guard.pay_guard_bkd.data.models.Admin;
 import com.pay_guard.pay_guard_bkd.data.models.emuns.UserRole;
 import com.pay_guard.pay_guard_bkd.data.repository.AdminRepository;
@@ -35,6 +36,7 @@ public class AuthenticationServiceImpl implements AuthenticationService{
     private final AdminDetailsService adminDetailsService;
 
     @Override
+    @Audit("Admin Registered")
     public RegisterResponse registerAdmin(RegisterAdminRequest request) {
         validateEmail(request.email());
         Admin admin = createAdmin(request);
@@ -43,6 +45,7 @@ public class AuthenticationServiceImpl implements AuthenticationService{
     }
 
     @Override
+    @Audit("Admin Login")
     @Transactional(readOnly = true)
     public LoginResponse login(LoginRequest request) {
 

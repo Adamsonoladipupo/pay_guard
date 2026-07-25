@@ -1,5 +1,6 @@
 package com.pay_guard.pay_guard_bkd.services;
 
+import com.pay_guard.pay_guard_bkd.annotation.Audit;
 import com.pay_guard.pay_guard_bkd.builder.FlaggedTransactionBuilder;
 import com.pay_guard.pay_guard_bkd.builder.TransactionBuilder;
 import com.pay_guard.pay_guard_bkd.data.models.FlaggedTransaction;
@@ -51,16 +52,11 @@ public class TransactionServiceImp implements TransactionService{
     }
 
     @Override
+    @Audit("Transaction Processed")
     public TransactionResponse createTransaction(TransactionRequest request) {
 
         Merchant merchant = validateMerchant(request);
         FraudAnalysisResult analysis = analyzeTransaction(request);
-//        Transaction transaction =
-//                buildTransaction(
-//                        merchant,
-//                        request,
-//                        analysis
-//                );
 
         Transaction transaction = transactionBuilder
                 .reset()
@@ -107,18 +103,6 @@ public class TransactionServiceImp implements TransactionService{
         return fraudDetectionService.analyze(request);
     }
 
-//    private Transaction buildTransaction(
-//            Merchant merchant,
-//            TransactionRequest request,
-//            FraudAnalysisResult analysis
-//    ) {
-//
-//        return new TransactionBuilder()
-//                .merchant(merchant)
-//                .request(request)
-//                .analysis(analysis)
-//                .build();
-//    }
 
     private Transaction saveTransaction(
             Transaction transaction
