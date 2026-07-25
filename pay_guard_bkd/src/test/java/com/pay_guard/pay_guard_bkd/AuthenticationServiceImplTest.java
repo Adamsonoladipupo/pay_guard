@@ -86,7 +86,7 @@ public class AuthenticationServiceImplTest {
         when(adminMapper.toRegisterResponse(admin))
                 .thenReturn(response);
 
-        RegisterResponse result = service.register(request);
+        RegisterResponse result = service.registerAdmin(request);
 
         assertThat(result.email()).isEqualTo(request.email());
 
@@ -108,7 +108,7 @@ public class AuthenticationServiceImplTest {
                 .thenReturn(true);
 
         assertThatThrownBy(() ->
-                service.register(request))
+                service.registerAdmin(request))
                 .isInstanceOf(BusinessException.class);
 
         verify(adminRepository, never()).save(any());
