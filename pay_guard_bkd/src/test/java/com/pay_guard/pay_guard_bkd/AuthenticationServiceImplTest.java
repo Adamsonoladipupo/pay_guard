@@ -11,6 +11,7 @@ import com.pay_guard.pay_guard_bkd.exception.BusinessException;
 import com.pay_guard.pay_guard_bkd.exception.InvalidCredentialsException;
 import com.pay_guard.pay_guard_bkd.mappers.AdminMapper;
 import com.pay_guard.pay_guard_bkd.security.AdminDetails;
+import com.pay_guard.pay_guard_bkd.security.AdminDetailsService;
 import com.pay_guard.pay_guard_bkd.security.JwtService;
 import com.pay_guard.pay_guard_bkd.services.AuthenticationServiceImpl;
 import org.junit.jupiter.api.Test;
@@ -18,6 +19,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -38,6 +40,9 @@ public class AuthenticationServiceImplTest {
     private PasswordEncoder passwordEncoder;
 
     @Mock
+    private AuthenticationManager authenticationManager;
+
+    @Mock
     private AdminMapper adminMapper;
 
     @Mock
@@ -46,7 +51,8 @@ public class AuthenticationServiceImplTest {
     @InjectMocks
     private AuthenticationServiceImpl service;
 
-    
+    @InjectMocks
+    private AdminDetailsService adminDetailsService;
 
     @Test
     void shouldRegisterAdminSuccessfully() {
