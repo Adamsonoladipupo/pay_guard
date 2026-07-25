@@ -11,6 +11,7 @@ import com.pay_guard.pay_guard_bkd.exception.BusinessException;
 import com.pay_guard.pay_guard_bkd.mappers.AdminMapper;
 import com.pay_guard.pay_guard_bkd.security.AdminDetails;
 import com.pay_guard.pay_guard_bkd.security.JwtService;
+import com.pay_guard.pay_guard_bkd.services.AuthenticationServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -21,9 +22,185 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.Optional;
 import java.util.UUID;
 
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
+import static org.assertj.core.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class AuthenticationServiceImplTest {
+    @Mock
+    private AdminRepository adminRepository;
+
+    @Mock
+    private PasswordEncoder passwordEncoder;
+
+    @Mock
+    private AdminMapper adminMapper;
+
+    @Mock
+    private JwtService jwtService;
+
+    @InjectMocks
+    private AuthenticationServiceImpl service;
+
+    @Test
+    void shouldRegisterAdminSuccessfully() {
+
+        RegisterAdminRequest request =
+                new RegisterAdminRequest(
+                        "Adamson",
+                        "Oladipupo",
+                        "admin@payguard.com",
+                        "password"
+                );
+
+        Admin admin = new Admin();
+
+        admin.setId(UUID.randomUUID());
+        admin.setEmail(request.email());
+        admin.setPassword("encoded");
+        admin.setRole(UserRole.ADMIN);
+
+        RegisterResponse response =
+                new RegisterResponse(
+                        admin.getId(),
+                        admin.getFirstName(),
+                        admin.getLastName(),
+                        admin.getEmail(),
+                        admin.getRole(),
+                        "Admin registered successfully."
+                );
+
+        when(adminRepository.existsByEmail(request.email()))
+                .thenReturn(false);
+
+        when(adminMapper.toEntity(request))
+                .thenReturn(admin);
+
+        when(passwordEncoder.encode(request.password()))
+                .thenReturn("encoded");
+
+        when(adminRepository.save(any(Admin.class)))
+                .thenReturn(admin);
+
+        when(adminMapper.toRegisterResponse(admin))
+                .thenReturn(response);
+
+        RegisterResponse result = service.register(request);
+
+        assertThat(result.email()).isEqualTo(request.email());
+
+        verify(adminRepository).save(any(Admin.class));
+    }
+
+    @Test
+    void shouldThrowExceptionWhenEmailAlreadyExists() {
+
+        RegisterAdminRequest request =
+                new RegisterAdminRequest(
+                        "John",
+                        "Doe",
+                        "admin@payguard.com",
+                        "password"
+                );
+
+        when(adminRepository.existsByEmail(request.email()))
+                .thenReturn(true);
+
+        assertThatThrownBy(() ->
+                service.register(request))
+                .isInstanceOf(BusinessException.class);
+
+        verify(adminRepository, never()).save(any());
+    }
+
+    @Test
+    void shouldLoginSuccessfully() {
+
+        LoginRequest request =
+                new LoginRequest(
+                        "admin@payguard.com",
+                        "password"
+                );
+
+        Admin admin = new Admin();
+
+        admin.setEmail(request.email());
+
+        admin.setPassword("encoded");
+
+        admin.setRole(UserRole.ADMIN);
+
+        when(adminRepository.findByEmail(request.email()))
+                .thenReturn(Optional.of(admin));
+
+        when(passwordEncoder.matches(
+                request.password(),
+                admin.getPassword()
+        )).thenReturn(true);
+
+        when(jwtService.generateToken(any(AdminDetails.class)))
+                .thenReturn("jwt-token");
+
+        LoginResponse response =
+                new LoginResponse(
+                        "jwt-token",
+                        "Bearer",
+                        "Login successful."
+                );
+
+        when(adminMapper.toLoginResponse(
+                eq(admin),
+                eq("jwt-token")
+        )).thenReturn(response);
+
+        LoginResponse result = service.login(request);
+
+        assertThat(result.token()).isEqualTo("jwt-token");
+    }
+
+    @Test
+    void shouldThrowExceptionWhenAdminDoesNotExist() {
+
+        LoginRequest request =
+                new LoginRequest(
+                        "missing@payguard.com",
+                        "password"
+                );
+
+        when(adminRepository.findByEmail(request.email()))
+                .thenReturn(Optional.empty());
+
+        assertThatThrownBy(() ->
+                service.login(request))
+                .isInstanceOf(BusinessException.class);
+    }
+
+    @Test
+    void shouldThrowExceptionWhenPasswordIsIncorrect() {
+
+        LoginRequest request =
+                new LoginRequest(
+                        "admin@payguard.com",
+                        "wrong-password"
+                );
+
+        Admin admin = new Admin();
+
+        admin.setEmail(request.email());
+
+        admin.setPassword("encoded");
+
+        when(adminRepository.findByEmail(request.email()))
+                .thenReturn(Optional.of(admin));
+
+        when(passwordEncoder.matches(
+                request.password(),
+                admin.getPassword()
+        )).thenReturn(false);
+
+        assertThatThrownBy(() ->
+                service.login(request))
+                .isInstanceOf(BusinessException.class);
+    }
 }
