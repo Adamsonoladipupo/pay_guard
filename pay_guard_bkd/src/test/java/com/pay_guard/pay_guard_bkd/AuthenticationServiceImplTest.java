@@ -46,6 +46,8 @@ public class AuthenticationServiceImplTest {
     @InjectMocks
     private AuthenticationServiceImpl service;
 
+    
+
     @Test
     void shouldRegisterAdminSuccessfully() {
 
