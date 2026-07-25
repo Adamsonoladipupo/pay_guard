@@ -19,8 +19,6 @@ import com.pay_guard.pay_guard_bkd.exception.TransactionNotFoundException;
 import com.pay_guard.pay_guard_bkd.mappers.FlaggedTransactionMapper;
 import com.pay_guard.pay_guard_bkd.mappers.TransactionMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -79,11 +77,10 @@ public class AdminServiceImpl implements AdminService{
         );
     }
 
-
-
     @Override
     public ReviewResponse reviewTransaction(
             UUID flaggedTransactionId,
+            UUID adminId,
             ReviewRequest request
     ) {
 
@@ -91,14 +88,6 @@ public class AdminServiceImpl implements AdminService{
                 findFlaggedTransaction(flaggedTransactionId);
 
         Admin admin = findAdmin(adminId);
-
-        Authentication authentication =
-                SecurityContextHolder
-                        .getContext()
-                        .getAuthentication();
-
-
-        Admin admin = findAdmin(authentication.getName());
 
         flaggedTransaction.setReviewed(true);
         flaggedTransaction.setReviewedAt(LocalDateTime.now());
