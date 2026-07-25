@@ -150,8 +150,7 @@ public class AuthenticationServiceImplTest {
                 );
 
         when(adminMapper.toLoginResponse(
-                eq(admin),
-                eq("jwt-token")
+                eq(admin)
         )).thenReturn(response);
 
         LoginResponse result = service.login(request);
