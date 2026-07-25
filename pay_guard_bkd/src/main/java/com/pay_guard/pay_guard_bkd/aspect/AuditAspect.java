@@ -10,6 +10,8 @@ import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -18,9 +20,8 @@ import java.time.LocalDateTime;
 @Component
 public class AuditAspect {
     private static final Logger log =
-            LoggerFactory.getLogger(
-                    AuditAspect.class
-            );
+            LoggerFactory.getLogger(AuditAspect.class);
+
     @AfterReturning(
             value = "@annotation(audit)",
             returning = "result"
@@ -42,41 +43,55 @@ public class AuditAspect {
                 joinPoint.getSignature()
                         .getName();
 
-        String identifier = "";
+        String identifier = extractIdentifier(result);
 
-        if (result instanceof RegisterResponse response) {
+        Authentication authentication =
+                SecurityContextHolder.getContext().getAuthentication();
 
-            identifier = response.id().toString();
+        String username =
+                authentication != null
+                        && authentication.isAuthenticated()
+                        && !"anonymousUser".equals(authentication.getName())
+                        ? authentication.getName()
+                        : "SYSTEM";
 
-        } else if (result instanceof MerchantResponse response) {
-
-            identifier = response.merchantId();
-
-        } else if (result instanceof TransactionResponse response) {
-
-            identifier = response.id().toString();
-
-        } else if (result instanceof ReviewResponse response) {
-
-            identifier = response.flaggedTransactionId().toString();
-
-        }
-
-
-        log.info(
-                """
-                AUDIT
+        log.info("""
+                        
+                ==================== AUDIT LOG ====================
+                Time        : {}
+                User        : {}
                 Action      : {}
                 Identifier  : {}
                 Class       : {}
                 Method      : {}
-                Time        : {}
+                ================================================
                 """,
-                audit.value(),
+                LocalDateTime.now(),
+                username,
+                action,
                 identifier,
-                joinPoint.getTarget().getClass().getSimpleName(),
-                joinPoint.getSignature().getName(),
-                LocalDateTime.now()
+                className,
+                methodName
         );
     }
+
+    private String extractIdentifier(Object result) {
+
+        if (result instanceof RegisterResponse response) {
+            return response.id().toString();
+        }
+
+        if (result instanceof MerchantResponse response) {
+            return response.merchantId();
+        }
+
+        if (result instanceof TransactionResponse response) {
+            return response.id().toString();
+        }
+
+        if (result instanceof ReviewResponse response) {
+            return response.flaggedTransactionId().toString();
+        }
+
+        return "N/A";
 }
