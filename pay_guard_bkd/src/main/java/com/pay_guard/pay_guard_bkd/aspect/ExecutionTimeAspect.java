@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 @Aspect
 @Component
 public class ExecutionTimeAspect {
+    private static final Logger log = LoggerFactory.getLogger(ExecutionTimeAspect.class);
+
     @Around("execution(* com.pay_guard.pay_guard_bkd.services..*(..))")
     public Object measureExecutionTime(
             ProceedingJoinPoint joinPoint
@@ -29,19 +31,13 @@ public class ExecutionTimeAspect {
         } finally {
             long executionTime =
                     System.currentTimeMillis() - start;
-            System.out.println(
-                    className
-                            + "."
-                            + methodName
-                            + "() completed in "
-                            + executionTime
-                            + " ms"
+            log.info(
+                    "{}.{}() completed in {} ms",
+                    className,
+                    methodName,
+                    executionTime
             );
         }
     }
 
-    private static final Logger log =
-            LoggerFactory.getLogger(
-                    ExecutionTimeAspect.class
-            );
 }
