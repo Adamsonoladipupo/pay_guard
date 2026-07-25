@@ -46,7 +46,11 @@ public class FraudDetectionService {
     }
 
     private TransactionStatus determineTransactionStatus(int score) {
+
         if (score >= properties.getThresholds().getDecline()) {
+            return TransactionStatus.DECLINED;
+        }
+        if (score >= properties.getThresholds().getReview()) {
             return TransactionStatus.FLAGGED;
         }
         return TransactionStatus.APPROVED;

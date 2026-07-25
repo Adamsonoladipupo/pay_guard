@@ -1,5 +1,6 @@
 package com.pay_guard.pay_guard_bkd.services;
 
+import com.pay_guard.pay_guard_bkd.config.FraudProperties;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
@@ -10,9 +11,11 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class RateLimiterServiceImpl implements RateLimiterService{
-    private static final int MAX_REQUESTS = 5;
 
-    private static final Duration WINDOW = Duration.ofMinutes(1);
+    private final FraudProperties properties;
+    public RateLimiterServiceImpl(FraudProperties properties) {
+        this.properties = properties;
+    }
 
     private final ConcurrentHashMap<String, Deque<Instant>>
             requestStore = new ConcurrentHashMap<>();
@@ -30,13 +33,15 @@ public class RateLimiterServiceImpl implements RateLimiterService{
             while (!requests.isEmpty()
                     &&
                     requests.peekFirst()
-                            .isBefore(now.minus(WINDOW))) {
+                            .isBefore(now.minus(Duration.ofMinutes(
+                                    properties.getRateLimit().getWindowMinutes()
+                            )))) {
 
                 requests.pollFirst();
 
             }
 
-            if (requests.size() >= MAX_REQUESTS) {
+            if (requests.size() >= properties.getRateLimit().getMaxRequests()) {
 
                 return false;
 
