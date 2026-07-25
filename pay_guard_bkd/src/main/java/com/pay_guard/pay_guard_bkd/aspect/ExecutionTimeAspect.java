@@ -17,20 +17,38 @@ public class ExecutionTimeAspect {
     public Object measureExecutionTime(
             ProceedingJoinPoint joinPoint
     ) throws Throwable {
+
         long start = System.currentTimeMillis();
+
         String className =
                 joinPoint.getTarget()
                         .getClass()
                         .getSimpleName();
+
         String methodName =
                 joinPoint.getSignature()
                         .getName();
 
         try {
+
             return joinPoint.proceed();
+
+        } catch (Exception ex) {
+
+            log.error(
+                    "{}.{}() failed: {}",
+                    className,
+                    methodName,
+                    ex.getMessage()
+            );
+
+            throw ex;
+
         } finally {
+
             long executionTime =
                     System.currentTimeMillis() - start;
+
             log.info(
                     "{}.{}() completed in {} ms",
                     className,
