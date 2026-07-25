@@ -77,12 +77,12 @@ public class FlaggedTransaction extends BaseEntity {
         this.investigationStatus = InvestigationStatus.IN_PROGRESS;
     }
 
-    public void closeInvestigation(Admin admin, String comment) {
+    public void closeInvestigation(Admin admin,InvestigationStatus status, String comment) {
         this.reviewed = true;
         this.reviewedBy = admin;
         this.reviewedAt = LocalDateTime.now();
         this.reviewComment = comment;
-        this.investigationStatus = InvestigationStatus.RESOLVED;
+        this.investigationStatus = status;
     }
 
     public void reopenInvestigation() {
