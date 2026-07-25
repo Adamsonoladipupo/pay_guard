@@ -1,6 +1,10 @@
 package com.pay_guard.pay_guard_bkd.aspect;
 
 import com.pay_guard.pay_guard_bkd.annotation.Audit;
+import com.pay_guard.pay_guard_bkd.dtos.responses.MerchantResponse;
+import com.pay_guard.pay_guard_bkd.dtos.responses.RegisterResponse;
+import com.pay_guard.pay_guard_bkd.dtos.responses.ReviewResponse;
+import com.pay_guard.pay_guard_bkd.dtos.responses.TransactionResponse;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
@@ -23,7 +27,8 @@ public class AuditAspect {
     )
     public void logAudit(
             JoinPoint joinPoint,
-            Audit audit
+            Audit audit,
+            Object result
     ) {
 
         String action = audit.value();
@@ -37,12 +42,41 @@ public class AuditAspect {
                 joinPoint.getSignature()
                         .getName();
 
+        String identifier = "";
+
+        if (result instanceof RegisterResponse response) {
+
+            identifier = response.id().toString();
+
+        } else if (result instanceof MerchantResponse response) {
+
+            identifier = response.merchantId();
+
+        } else if (result instanceof TransactionResponse response) {
+
+            identifier = response.id().toString();
+
+        } else if (result instanceof ReviewResponse response) {
+
+            identifier = response.flaggedTransactionId().toString();
+
+        }
+
+
         log.info(
-                "AUDIT | Time: {} | Action: {} | Class: {} | Method: {}",
-                LocalDateTime.now(),
-                action,
-                className,
-                methodName
+                """
+                AUDIT
+                Action      : {}
+                Identifier  : {}
+                Class       : {}
+                Method      : {}
+                Time        : {}
+                """,
+                audit.value(),
+                identifier,
+                joinPoint.getTarget().getClass().getSimpleName(),
+                joinPoint.getSignature().getName(),
+                LocalDateTime.now()
         );
     }
 }
