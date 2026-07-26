@@ -68,7 +68,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="End3kU55QTJX92bPjWSG" name="class diagram">
-    <mxGraphModel dx="1356" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2034" dy="1191" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -244,6 +244,9 @@
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1260" y="550" as="targetPoint" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="8xq6Yz5Dd6Zp1xsBAR-H-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=-0.012;entryY=0.181;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=block;endFill=0;" edge="1" parent="1" source="8xq6Yz5Dd6Zp1xsBAR-H-20" target="wY2A6c8ZNtAwZWG3tiPu-29">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
