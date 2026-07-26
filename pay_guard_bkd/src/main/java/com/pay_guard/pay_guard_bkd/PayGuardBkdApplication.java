@@ -17,8 +17,7 @@ public class PayGuardBkdApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) {
-		System.out.println("JWT_SECRET = " + System.getenv("JWT_SECRET"));
-		System.out.println("DATABASE_URL = " + System.getenv("DATABASE_URL"));
+		System.out.println("testing");
 	}
 
 }
