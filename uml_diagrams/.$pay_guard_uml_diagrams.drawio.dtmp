@@ -68,12 +68,12 @@
     </mxGraphModel>
   </diagram>
   <diagram id="End3kU55QTJX92bPjWSG" name="class diagram">
-    <mxGraphModel dx="1122" dy="657" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="930" dy="545" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="wY2A6c8ZNtAwZWG3tiPu-1" value="Transaction" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="600" y="500" width="160" height="184" as="geometry" />
+          <mxGeometry x="600" y="585" width="160" height="184" as="geometry" />
         </mxCell>
         <mxCell id="wY2A6c8ZNtAwZWG3tiPu-2" value="&lt;div&gt;- cardNumber: String&amp;nbsp;&lt;/div&gt;&lt;div&gt;- amount: BigDec&lt;/div&gt;&lt;div&gt;- marchantId: String&lt;/div&gt;&lt;div&gt;- currency: String&lt;/div&gt;&lt;div&gt;- status: String&lt;/div&gt;&lt;div&gt;- IpAddress: String&lt;/div&gt;&lt;div&gt;- deviceId: String&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;- riskScore: Integer&amp;nbsp;&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="wY2A6c8ZNtAwZWG3tiPu-1" vertex="1">
           <mxGeometry y="26" width="160" height="124" as="geometry" />
@@ -97,7 +97,7 @@
           <mxGeometry y="88" width="180" height="22" as="geometry" />
         </mxCell>
         <mxCell id="wY2A6c8ZNtAwZWG3tiPu-13" value="Admin" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="350" y="500" width="160" height="144" as="geometry" />
+          <mxGeometry x="350" y="585" width="160" height="144" as="geometry" />
         </mxCell>
         <mxCell id="wY2A6c8ZNtAwZWG3tiPu-14" value="&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;- username: String&amp;nbsp;&lt;/span&gt;&lt;div&gt;- passwordHash: String&lt;/div&gt;&lt;div&gt;- email: String&lt;/div&gt;&lt;div&gt;- role: UserRole&amp;nbsp;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="wY2A6c8ZNtAwZWG3tiPu-13" vertex="1">
           <mxGeometry y="26" width="160" height="84" as="geometry" />
@@ -120,8 +120,8 @@
         <mxCell id="wY2A6c8ZNtAwZWG3tiPu-20" value="." style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="wY2A6c8ZNtAwZWG3tiPu-17" vertex="1">
           <mxGeometry y="98" width="160" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="wY2A6c8ZNtAwZWG3tiPu-21" value="RateLimiter" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="820" y="710" width="160" height="124" as="geometry" />
+        <mxCell id="wY2A6c8ZNtAwZWG3tiPu-21" value="FlaggedTransaction" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1200" y="739" width="160" height="124" as="geometry" />
         </mxCell>
         <mxCell id="wY2A6c8ZNtAwZWG3tiPu-22" value="- limitPerMinute: int = 5&lt;div&gt;-&amp;nbsp;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="wY2A6c8ZNtAwZWG3tiPu-21" vertex="1">
           <mxGeometry y="26" width="160" height="64" as="geometry" />
@@ -133,7 +133,7 @@
           <mxGeometry y="98" width="160" height="26" as="geometry" />
         </mxCell>
         <mxCell id="wY2A6c8ZNtAwZWG3tiPu-25" value="FraudAlert" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="1060" y="710" width="160" height="124" as="geometry" />
+          <mxGeometry x="1360" y="380" width="160" height="124" as="geometry" />
         </mxCell>
         <mxCell id="wY2A6c8ZNtAwZWG3tiPu-26" value="- id: UUID&lt;div&gt;- transactionId: UUID&lt;/div&gt;&lt;div&gt;- reason: String&lt;/div&gt;&lt;div&gt;- createdAt: localDateTine&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="wY2A6c8ZNtAwZWG3tiPu-25" vertex="1">
           <mxGeometry y="26" width="160" height="64" as="geometry" />
@@ -157,7 +157,7 @@
           <mxGeometry y="58" width="160" height="26" as="geometry" />
         </mxCell>
         <mxCell id="wY2A6c8ZNtAwZWG3tiPu-33" value="TransactionService" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="827" y="310" width="160" height="84" as="geometry" />
+          <mxGeometry x="1070" y="320" width="160" height="84" as="geometry" />
         </mxCell>
         <mxCell id="wY2A6c8ZNtAwZWG3tiPu-34" value="." style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="wY2A6c8ZNtAwZWG3tiPu-33" vertex="1">
           <mxGeometry y="26" width="160" height="24" as="geometry" />
@@ -169,7 +169,7 @@
           <mxGeometry y="58" width="160" height="26" as="geometry" />
         </mxCell>
         <mxCell id="8xq6Yz5Dd6Zp1xsBAR-H-1" value="Merchant" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="840" y="500" width="160" height="154" as="geometry" />
+          <mxGeometry x="840" y="585" width="160" height="154" as="geometry" />
         </mxCell>
         <mxCell id="8xq6Yz5Dd6Zp1xsBAR-H-2" value="&lt;div&gt;- name String&amp;nbsp;&lt;/div&gt;&lt;div&gt;- businessName: String&lt;/div&gt;&lt;div&gt;- marchantId: String&lt;/div&gt;&lt;div&gt;- category: String&lt;/div&gt;&lt;div&gt;- status: String&lt;/div&gt;&lt;div&gt;&amp;nbsp;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="8xq6Yz5Dd6Zp1xsBAR-H-1">
           <mxGeometry y="26" width="160" height="94" as="geometry" />
