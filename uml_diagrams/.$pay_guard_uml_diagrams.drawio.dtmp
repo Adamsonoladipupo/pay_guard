@@ -68,7 +68,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="End3kU55QTJX92bPjWSG" name="class diagram">
-    <mxGraphModel dx="930" dy="545" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1122" dy="657" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -249,7 +249,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="8xq6Yz5Dd6Zp1xsBAR-H-23" value="&lt;div&gt;&lt;span style=&quot;font-weight: 400; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;«enum»&lt;/span&gt;&lt;/div&gt;&lt;div&gt;TransactionStatus&lt;/div&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=44;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="40" y="40" width="160" height="180" as="geometry" />
+          <mxGeometry x="70" y="54" width="160" height="180" as="geometry" />
         </mxCell>
         <mxCell id="8xq6Yz5Dd6Zp1xsBAR-H-24" value="&lt;span style=&quot;background-color: transparent;&quot;&gt;RECEIVED,&lt;/span&gt;&lt;div&gt;PENDING,&lt;/div&gt;&lt;div&gt;APPROVED,&lt;/div&gt;&lt;div&gt;FLAGGED,&lt;/div&gt;&lt;div&gt;REJECTED,&lt;/div&gt;&lt;div&gt;DECLINED&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="8xq6Yz5Dd6Zp1xsBAR-H-23">
           <mxGeometry y="44" width="160" height="96" as="geometry" />
@@ -261,7 +261,7 @@
           <mxGeometry y="148" width="160" height="32" as="geometry" />
         </mxCell>
         <mxCell id="8xq6Yz5Dd6Zp1xsBAR-H-27" value="&lt;div&gt;&lt;span style=&quot;font-weight: 400; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;«enum»&lt;/span&gt;&lt;/div&gt;&lt;div&gt;UserRole&lt;/div&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=44;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="40" y="240" width="160" height="130" as="geometry" />
+          <mxGeometry x="70" y="254" width="160" height="130" as="geometry" />
         </mxCell>
         <mxCell id="8xq6Yz5Dd6Zp1xsBAR-H-28" value="ADMIN,&lt;div&gt;MANAGER&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="8xq6Yz5Dd6Zp1xsBAR-H-27">
           <mxGeometry y="44" width="160" height="46" as="geometry" />
@@ -273,16 +273,25 @@
           <mxGeometry y="98" width="160" height="32" as="geometry" />
         </mxCell>
         <mxCell id="8xq6Yz5Dd6Zp1xsBAR-H-31" value="&lt;div&gt;&lt;span style=&quot;font-weight: 400; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;«enum»&lt;/span&gt;&lt;/div&gt;&lt;div&gt;TransactionType&lt;/div&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=44;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="40" y="400" width="160" height="130" as="geometry" />
+          <mxGeometry x="70" y="414" width="160" height="170" as="geometry" />
         </mxCell>
-        <mxCell id="8xq6Yz5Dd6Zp1xsBAR-H-32" value="ADMIN,&lt;div&gt;MANAGER&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="8xq6Yz5Dd6Zp1xsBAR-H-31">
-          <mxGeometry y="44" width="160" height="46" as="geometry" />
+        <mxCell id="8xq6Yz5Dd6Zp1xsBAR-H-32" value="&lt;div&gt;PURCHASE,&lt;/div&gt;&lt;div&gt;REFUND,&lt;/div&gt;&lt;div&gt;TRANSFER,&lt;/div&gt;&lt;div&gt;WITHDRAWAL,&lt;/div&gt;&lt;div&gt;DEPOSIT&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="8xq6Yz5Dd6Zp1xsBAR-H-31">
+          <mxGeometry y="44" width="160" height="86" as="geometry" />
         </mxCell>
         <mxCell id="8xq6Yz5Dd6Zp1xsBAR-H-33" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="8xq6Yz5Dd6Zp1xsBAR-H-31">
-          <mxGeometry y="90" width="160" height="8" as="geometry" />
+          <mxGeometry y="130" width="160" height="8" as="geometry" />
         </mxCell>
         <mxCell id="8xq6Yz5Dd6Zp1xsBAR-H-34" value="." style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="8xq6Yz5Dd6Zp1xsBAR-H-31">
-          <mxGeometry y="98" width="160" height="32" as="geometry" />
+          <mxGeometry y="138" width="160" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="8xq6Yz5Dd6Zp1xsBAR-H-35" value="VelocityStrategy" style="html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="80" width="170" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8xq6Yz5Dd6Zp1xsBAR-H-36" value="HighAmountStrategy" style="html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1210" y="80" width="170" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8xq6Yz5Dd6Zp1xsBAR-H-37" value="HighAmountStrategy" style="html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1390" y="80" width="170" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
