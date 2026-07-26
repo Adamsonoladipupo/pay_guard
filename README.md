@@ -233,29 +233,6 @@ The project includes:
 - Component Diagram
 - Deployment Diagram
 
----
-
-# Roadmap
-
-## Phase 1
-- Core transaction ingestion API
-- Database setup
-- Basic fraud rules
-
-## Phase 2
-- JWT authentication
-- Admin dashboard APIs
-- Rate limiter
-
-## Phase 3
-- AOP logging
-- Monitoring and observability
-- Performance optimization
-
-## Phase 4
-- Redis integration
-- Kafka streaming
-- ML fraud detection
 
 ---
 
