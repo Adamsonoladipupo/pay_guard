@@ -5,4 +5,4 @@ target/
 .gitignore
 README.md
 *.iml
-logs/
+logs/logs
