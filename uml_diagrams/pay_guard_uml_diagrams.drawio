@@ -307,6 +307,9 @@
             </Array>
           </mxGeometry>
         </mxCell>
+        <mxCell id="8xq6Yz5Dd6Zp1xsBAR-H-41" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;PayGuard Class Diagram&lt;/font&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="677" y="60" width="300" height="30" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
