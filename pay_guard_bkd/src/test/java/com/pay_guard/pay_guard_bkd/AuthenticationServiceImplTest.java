@@ -43,7 +43,7 @@ public class AuthenticationServiceImplTest {
         RegisterAdminRequest request =
                 new RegisterAdminRequest(
                         "Adamson",
-                        "Oladipupo",
+                        "Adamson",
                         "admin@payguard.com",
                         "password"
                 );
