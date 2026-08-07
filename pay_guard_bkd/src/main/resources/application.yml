@@ -1,0 +1,38 @@
+#spring:
+#  application:
+#    name: pay_guard_bkd
+#
+#  datasource:
+#    url: ${DATABASE_URL}
+#    username: ${DATABASE_USERNAME}
+#    password: ${DATABASE_PASSWORD}
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#
+#
+#
+#payguard:
+#
+#  fraud:
+#
+#    thresholds:
+#      approve: 30
+#      review: 80
+#      decline: 120
+#
+#    high-amount:
+#      limit: 500000
+#
+#    rate-limit:
+#      max-requests: 5
+#      window-minutes: 1
+#
+#    velocity:
+#      max-transactions: 5
+#      window-minutes: 10
+#
+#jwt:
+#  secret: ${JWT_SECRET}
+#  expiration: ${JWT_EXPIRATION}
